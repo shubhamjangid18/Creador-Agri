@@ -120,13 +120,13 @@ export default function Hero({ onContactClick }) {
               </svg>
             </button>
 
-            <a
+            {/* <a
               href="#work"
               className="btn btn--secondary"
             >
               View Our Work
               <span>→</span>
-            </a>
+            </a> */}
 
           </div>
 
