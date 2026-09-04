@@ -10,28 +10,27 @@ const bgImages = [
     src: 'https://clientes.b3.com.br/documents/20119/277844/GettyImages-200010069-0011095385567.jpeg/f42bd9bc-4a44-71c5-e31d-ae2735c2766d?t=1700711820399&version=1.0',
     alt: 'Green agricultural farmland landscape',
   },
-
-   {
-    src: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1600&q=95&fit=crop',
-    alt: 'Premium sunflower farm cinematic view',
-  },
-
   {
-    src: 'https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=1600&q=95&fit=crop',
-    alt: 'Farmer in agricultural field at sunrise',
+    src: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=2400&q=90',
+    alt: 'Premium green agriculture field',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1574943320219-553eb213f72d?auto=format&fit=crop&w=2400&q=90',
+    alt: 'Farmer working in agricultural farmland',
   },
 ];
 
 export default function Hero({ onContactClick }) {
   const [active, setActive] = useState(0);
 
-  // Automatic image slider
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActive((prev) => (prev + 1) % bgImages.length);
-    }, 3000); // 3 seconds
+    const intervalId = window.setInterval(() => {
+      setActive((previous) => (previous + 1) % bgImages.length);
+    }, 4000);
 
-    return () => clearInterval(interval);
+    return () => {
+      window.clearInterval(intervalId);
+    };
   }, []);
 
   const handleContactClick = () => {
@@ -45,13 +44,13 @@ export default function Hero({ onContactClick }) {
     if (contactSection) {
       contactSection.scrollIntoView({
         behavior: 'smooth',
+        block: 'start',
       });
     }
   };
 
   return (
     <header className="hero">
-
       {/* Background Images */}
       <div className="hero__bg" aria-hidden="true">
         {bgImages.map((image, index) => (
@@ -64,21 +63,21 @@ export default function Hero({ onContactClick }) {
                 ? 'hero__bg-img is-active'
                 : 'hero__bg-img'
             }
+            loading={index === 0 ? 'eager' : 'lazy'}
           />
         ))}
       </div>
 
-      {/* Overlays */}
-      <div className="hero__duotone"></div>
-      <div className="hero__overlay"></div>
-      <div className="hero__grain"></div>
-      <div className="hero__vignette"></div>
+      {/* Premium Overlays */}
+      <div className="hero__duotone" aria-hidden="true" />
+      <div className="hero__overlay" aria-hidden="true" />
+      <div className="hero__grain" aria-hidden="true" />
+      <div className="hero__vignette" aria-hidden="true" />
 
       {/* Hero Content */}
       <div className="hero__body">
         <div className="hero__copy">
-
-          <div className="hero__rule"></div>
+          <div className="hero__rule" />
 
           <div className="hero__eyebrow">
             Agriculture Packaging & Branding
@@ -96,19 +95,19 @@ export default function Hero({ onContactClick }) {
           </p>
 
           <div className="hero__actions">
-
             <button
               type="button"
-              className="btn btn--primary"
+              className="hero__primary-btn"
               onClick={handleContactClick}
             >
-              Get a Free Design Consultation
+              <span>Get a Free Design Consultation</span>
 
               <svg
-                width="16"
-                height="16"
+                width="18"
+                height="18"
                 viewBox="0 0 24 24"
                 fill="none"
+                aria-hidden="true"
               >
                 <path
                   d="M7 17L17 7M17 7H7M17 7V17"
@@ -119,29 +118,17 @@ export default function Hero({ onContactClick }) {
                 />
               </svg>
             </button>
-
-            {/* <a
-              href="#work"
-              className="btn btn--secondary"
-            >
-              View Our Work
-              <span>→</span>
-            </a> */}
-
           </div>
-
         </div>
       </div>
 
       {/* Slider Controls */}
       <div className="hero__slidefoot">
-
         <span className="hero__caption">
           Agriculture • Packaging • Branding
         </span>
 
         <div className="hero__indicators">
-
           {bgImages.map((image, index) => (
             <button
               key={image.src}
@@ -155,11 +142,8 @@ export default function Hero({ onContactClick }) {
               onClick={() => setActive(index)}
             />
           ))}
-
         </div>
-
       </div>
-
     </header>
   );
 }

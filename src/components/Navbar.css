@@ -1,221 +1,568 @@
 /* =========================================================
-   ULTRA-PREMIUM MINIMAL NAVBAR
+   PREMIUM GREEN GLASS NAVBAR
 ========================================================= */
+
 .nav {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
+
   z-index: 1000;
-  padding-top: 35px; 
-  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-  pointer-events: none; 
+
+  padding-top: 28px;
+
+  transition:
+    padding 0.45s cubic-bezier(0.25, 1, 0.5, 1),
+    background 0.45s ease;
+
+  pointer-events: none;
 }
 
-.nav--scrolled {
-  padding-top: 15px;
-  background: linear-gradient(to bottom, rgba(5, 14, 8, 0.95), transparent);
-}
-
-.nav__inner {
-  width: min(1400px, 92%); 
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between; 
-  align-items: flex-start;
-  pointer-events: none; 
-}
 
 /* =========================================================
-   ACTION PILL (LEFT SIDE: Phone + CTA)
+   SCROLLED STATE
 ========================================================= */
-.nav__action-pill {
-  display: flex;
-  align-items: center;
-  background: rgba(13, 28, 18, 0.85); /* Deep rich green glass */
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 999px;
-  padding: 8px 8px 8px 24px; /* Extra padding on left for balance */
-  gap: 12px;
-  pointer-events: auto;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  transition: all 0.4s ease;
+
+.nav--scrolled {
+  padding-top: 12px;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(3, 16, 7, 0.96) 0%,
+    rgba(3, 16, 7, 0.82) 70%,
+    transparent 100%
+  );
 }
 
-.nav--scrolled .nav__action-pill {
-  background: rgba(13, 28, 18, 0.95);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+
+/* =========================================================
+   NAV CONTAINER
+========================================================= */
+
+.nav__inner {
+  width: min(1400px, 92%);
+  margin: 0 auto;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  pointer-events: none;
 }
+
+
+/* =========================================================
+   ACTION PILL
+========================================================= */
+
+.nav__action-pill {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  padding: 7px 8px 7px 22px;
+
+  gap: 12px;
+
+  border-radius: 999px;
+
+  pointer-events: auto;
+
+  background: linear-gradient(
+    135deg,
+    rgba(11, 42, 18, 0.94),
+    rgba(7, 28, 12, 0.88)
+  );
+
+  border: 1px solid rgba(121, 200, 137, 0.22);
+
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+
+.nav__action-pill:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(121, 200, 137, 0.4);
+
+  box-shadow:
+    0 24px 55px rgba(0, 0, 0, 0.42),
+    0 0 25px rgba(58, 125, 68, 0.12);
+}
+
+
+.nav--scrolled .nav__action-pill {
+  background: rgba(6, 25, 10, 0.96);
+}
+
 
 /* =========================================================
    PHONE NUMBER
 ========================================================= */
+
 .nav__phone {
   display: flex;
   align-items: center;
+
   gap: 10px;
-  color: #e3bc54; /* Premium Gold */
+
+  color: #b7edc2;
+
   text-decoration: none;
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  transition: all 0.3s ease;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  letter-spacing: 0.6px;
+
+  white-space: nowrap;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
 }
 
+
+.nav__phone svg {
+  color: #79c889;
+
+  filter: drop-shadow(
+    0 0 7px rgba(121, 200, 137, 0.35)
+  );
+}
+
+
 .nav__phone:hover {
-  color: #fce398;
+  color: #ffffff;
+
   transform: translateY(-1px);
 }
 
+
+.nav__phone:hover svg {
+  color: #9be3aa;
+}
+
+
 /* =========================================================
-   DIVIDER LINE
+   DIVIDER
 ========================================================= */
+
 .nav__divider {
   width: 1px;
-  height: 28px;
-  background: rgba(255, 255, 255, 0.15);
+  height: 30px;
+
   margin: 0 8px;
+
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(121, 200, 137, 0.45),
+    transparent
+  );
 }
+
 
 /* =========================================================
-   CTA BUTTON (GOLD PILL)
+   CTA BUTTON - PREMIUM GREEN
 ========================================================= */
+
 .nav__cta {
-  background: linear-gradient(135deg, #e3bc54, #c99327);
-  color: #111;
-  border: none;
-  border-radius: 999px;
-  padding: 14px 32px;
-  font-weight: 800;
-  font-size: 15px;
-  letter-spacing: 0.5px;
+  position: relative;
+
+  overflow: hidden;
+
   display: flex;
   align-items: center;
+  justify-content: center;
+
   gap: 10px;
+
+  border: none;
+
+  border-radius: 999px;
+
+  padding: 14px 30px;
+
   cursor: pointer;
-  box-shadow: 0 6px 20px rgba(201, 147, 39, 0.3);
-  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+
+  color: #ffffff;
+
+  background: linear-gradient(
+    135deg,
+    #2f6f3b,
+    #3f8f50,
+    #2f6f3b
+  );
+
+  background-size: 200% 200%;
+
+  font-size: 14px;
+  font-weight: 800;
+
+  letter-spacing: 0.6px;
+
+  box-shadow:
+    0 8px 22px rgba(47, 111, 59, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+
+  transition:
+    transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+    box-shadow 0.35s ease,
+    background-position 0.5s ease;
 }
+
+
+/* CTA Shine */
+
+.nav__cta::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -120%;
+
+  width: 70%;
+  height: 100%;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.18),
+    transparent
+  );
+
+  transform: skewX(-20deg);
+
+  transition: left 0.6s ease;
+}
+
+
+.nav__cta:hover::before {
+  left: 140%;
+}
+
 
 .nav__cta:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 10px 25px rgba(201, 147, 39, 0.5);
-  background: linear-gradient(135deg, #fce398, #e3bc54);
+  transform: translateY(-2px) scale(1.025);
+
+  background-position: 100% 50%;
+
+  box-shadow:
+    0 15px 35px rgba(47, 111, 59, 0.55),
+    0 0 22px rgba(121, 200, 137, 0.18);
 }
 
-.nav__cta svg {
-  transition: transform 0.3s ease;
+
+.nav__cta:active {
+  transform: translateY(0) scale(0.98);
 }
+
+
+/* =========================================================
+   BUTTON ARROW
+========================================================= */
+
+.nav__cta svg {
+  position: relative;
+  z-index: 2;
+
+  transition:
+    transform 0.3s ease;
+}
+
 
 .nav__cta:hover svg {
   transform: translateX(4px);
 }
 
+
 /* =========================================================
-   LOGO (RIGHT SIDE, BIG WHITE CIRCLE)
+   LOGO
 ========================================================= */
+
 .nav__logo {
-  width: 140px; /* Big & Premium */
-  height: 140px;
-  background: #ffffff;
-  border-radius: 50%;
+  position: relative;
+
+  width: 132px;
+  height: 132px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+
   flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
   text-decoration: none;
+
   pointer-events: auto;
-  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-  position: relative;
+
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+
+  transition:
+    width 0.45s cubic-bezier(0.25, 1, 0.5, 1),
+    height 0.45s cubic-bezier(0.25, 1, 0.5, 1),
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
 }
 
-/* Very subtle inner border for luxury feel */
-.nav__logo::after {
-  content: '';
+
+/* INNER RING */
+
+.nav__logo::before {
+  content: "";
+
   position: absolute;
+
   inset: 6px;
+
   border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.04);
+
+  border: 1px solid rgba(58, 125, 68, 0.12);
+
+  pointer-events: none;
 }
+
+
+/* OUTER GLOW */
+
+.nav__logo::after {
+  content: "";
+
+  position: absolute;
+
+  inset: -4px;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(121, 200, 137, 0.16);
+
+  pointer-events: none;
+}
+
 
 .nav__logo:hover {
-  transform: scale(1.03) translateY(-3px);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  transform: translateY(-4px) scale(1.03);
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.45),
+    0 0 25px rgba(121, 200, 137, 0.12);
 }
 
-.nav__logo-img {
-  width: 75%;
-  height: 75%;
-  object-fit: contain;
-  transition: transform 0.4s ease;
-}
-
-.nav__logo:hover .nav__logo-img {
-  transform: scale(1.05);
-}
-
-/* Shrinks elegantly on scroll */
-.nav--scrolled .nav__logo {
-  width: 90px;
-  height: 90px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-}
 
 /* =========================================================
-   MEDIA QUERIES 
+   LOGO IMAGE
 ========================================================= */
-@media (max-width: 950px) {
-  .nav { padding-top: 20px; }
-  
-  .nav__inner { 
-    align-items: center; 
-  }
 
-  .nav__logo { 
-    width: 90px; 
-    height: 90px;
-  }
-  
-  .nav--scrolled .nav__logo { 
-    width: 75px; 
-    height: 75px;
-  }
+.nav__logo-img {
+  position: relative;
+  z-index: 2;
 
-  /* Make pill slightly smaller for tablets */
-  .nav__action-pill {
-    padding: 6px 6px 6px 18px;
-  }
-  
-  .nav__phone { font-size: 14px; }
-  .nav__cta { padding: 12px 24px; font-size: 14px; }
+  width: 76%;
+  height: 76%;
+
+  object-fit: contain;
+
+  transition:
+    transform 0.4s ease;
 }
 
-@media (max-width: 600px) {
-  /* On very small screens, hide the phone text to keep it looking clean,
-     just keeping the phone icon + Contact Now button. */
-  .nav__phone-text {
-    display: none; 
-  }
-  
-  .nav__action-pill {
-    padding: 6px 6px 6px 16px;
-    gap: 8px;
-  }
-  
-  .nav__divider {
-    margin: 0 4px;
+
+.nav__logo:hover .nav__logo-img {
+  transform: scale(1.06);
+}
+
+
+/* =========================================================
+   SCROLL LOGO
+========================================================= */
+
+.nav--scrolled .nav__logo {
+  width: 88px;
+  height: 88px;
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 950px) {
+
+  .nav {
+    padding-top: 18px;
   }
 
-  .nav__cta {
-    padding: 10px 20px;
+
+  .nav__inner {
+    align-items: center;
+  }
+
+
+  .nav__logo {
+    width: 90px;
+    height: 90px;
+  }
+
+
+  .nav--scrolled .nav__logo {
+    width: 74px;
+    height: 74px;
+  }
+
+
+  .nav__action-pill {
+    padding: 6px 7px 6px 17px;
+  }
+
+
+  .nav__phone {
     font-size: 13px;
   }
 
+
+  .nav__cta {
+    padding: 12px 22px;
+
+    font-size: 13px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .nav {
+    padding-top: 12px;
+  }
+
+
+  .nav__inner {
+    width: 94%;
+  }
+
+
+  .nav__phone-text {
+    display: none;
+  }
+
+
+  .nav__action-pill {
+    padding: 7px 7px 7px 12px;
+
+    gap: 7px;
+  }
+
+
+  .nav__phone {
+    gap: 0;
+  }
+
+
+  .nav__phone svg {
+    width: 17px;
+    height: 17px;
+  }
+
+
+  .nav__divider {
+    height: 24px;
+
+    margin: 0 3px;
+  }
+
+
+  .nav__cta {
+    padding: 10px 17px;
+
+    font-size: 12px;
+
+    gap: 7px;
+  }
+
+
+  .nav__cta svg {
+    width: 15px;
+    height: 15px;
+  }
+
+
   .nav__logo {
-    width: 75px;
-    height: 75px;
+    width: 70px;
+    height: 70px;
+  }
+
+
+  .nav--scrolled .nav__logo {
+    width: 62px;
+    height: 62px;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+
+  .nav__cta {
+    padding: 9px 13px;
+
+    font-size: 11px;
+  }
+
+
+  .nav__logo {
+    width: 62px;
+    height: 62px;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .nav,
+  .nav__action-pill,
+  .nav__phone,
+  .nav__cta,
+  .nav__cta svg,
+  .nav__logo,
+  .nav__logo-img {
+    transition: none;
+  }
+
+
+  .nav__cta::before {
+    display: none;
   }
 }
