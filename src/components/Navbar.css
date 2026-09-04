@@ -1,0 +1,221 @@
+/* =========================================================
+   ULTRA-PREMIUM MINIMAL NAVBAR
+========================================================= */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding-top: 35px; 
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  pointer-events: none; 
+}
+
+.nav--scrolled {
+  padding-top: 15px;
+  background: linear-gradient(to bottom, rgba(5, 14, 8, 0.95), transparent);
+}
+
+.nav__inner {
+  width: min(1400px, 92%); 
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between; 
+  align-items: flex-start;
+  pointer-events: none; 
+}
+
+/* =========================================================
+   ACTION PILL (LEFT SIDE: Phone + CTA)
+========================================================= */
+.nav__action-pill {
+  display: flex;
+  align-items: center;
+  background: rgba(13, 28, 18, 0.85); /* Deep rich green glass */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  padding: 8px 8px 8px 24px; /* Extra padding on left for balance */
+  gap: 12px;
+  pointer-events: auto;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.4s ease;
+}
+
+.nav--scrolled .nav__action-pill {
+  background: rgba(13, 28, 18, 0.95);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* =========================================================
+   PHONE NUMBER
+========================================================= */
+.nav__phone {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #e3bc54; /* Premium Gold */
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.nav__phone:hover {
+  color: #fce398;
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   DIVIDER LINE
+========================================================= */
+.nav__divider {
+  width: 1px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.15);
+  margin: 0 8px;
+}
+
+/* =========================================================
+   CTA BUTTON (GOLD PILL)
+========================================================= */
+.nav__cta {
+  background: linear-gradient(135deg, #e3bc54, #c99327);
+  color: #111;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 32px;
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(201, 147, 39, 0.3);
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.nav__cta:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(201, 147, 39, 0.5);
+  background: linear-gradient(135deg, #fce398, #e3bc54);
+}
+
+.nav__cta svg {
+  transition: transform 0.3s ease;
+}
+
+.nav__cta:hover svg {
+  transform: translateX(4px);
+}
+
+/* =========================================================
+   LOGO (RIGHT SIDE, BIG WHITE CIRCLE)
+========================================================= */
+.nav__logo {
+  width: 140px; /* Big & Premium */
+  height: 140px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
+  text-decoration: none;
+  pointer-events: auto;
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  position: relative;
+}
+
+/* Very subtle inner border for luxury feel */
+.nav__logo::after {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.nav__logo:hover {
+  transform: scale(1.03) translateY(-3px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+.nav__logo-img {
+  width: 75%;
+  height: 75%;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+}
+
+.nav__logo:hover .nav__logo-img {
+  transform: scale(1.05);
+}
+
+/* Shrinks elegantly on scroll */
+.nav--scrolled .nav__logo {
+  width: 90px;
+  height: 90px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* =========================================================
+   MEDIA QUERIES 
+========================================================= */
+@media (max-width: 950px) {
+  .nav { padding-top: 20px; }
+  
+  .nav__inner { 
+    align-items: center; 
+  }
+
+  .nav__logo { 
+    width: 90px; 
+    height: 90px;
+  }
+  
+  .nav--scrolled .nav__logo { 
+    width: 75px; 
+    height: 75px;
+  }
+
+  /* Make pill slightly smaller for tablets */
+  .nav__action-pill {
+    padding: 6px 6px 6px 18px;
+  }
+  
+  .nav__phone { font-size: 14px; }
+  .nav__cta { padding: 12px 24px; font-size: 14px; }
+}
+
+@media (max-width: 600px) {
+  /* On very small screens, hide the phone text to keep it looking clean,
+     just keeping the phone icon + Contact Now button. */
+  .nav__phone-text {
+    display: none; 
+  }
+  
+  .nav__action-pill {
+    padding: 6px 6px 6px 16px;
+    gap: 8px;
+  }
+  
+  .nav__divider {
+    margin: 0 4px;
+  }
+
+  .nav__cta {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+
+  .nav__logo {
+    width: 75px;
+    height: 75px;
+  }
+}

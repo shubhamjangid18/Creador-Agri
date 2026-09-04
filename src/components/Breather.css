@@ -1,0 +1,15 @@
+/* ============ Breather ============ */
+.breather {
+  padding: 3.2rem 6vw;
+  text-align: center;
+}
+
+.breather__line {
+  max-width: 640px;
+  margin: 0 auto;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.15rem, 2vw, 1.5rem);
+  color: var(--forest);
+  line-height: 1.5;
+}

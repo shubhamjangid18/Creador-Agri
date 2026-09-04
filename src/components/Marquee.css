@@ -1,0 +1,630 @@
+/* =========================================
+   SECTION
+========================================= */
+
+.agri-marquee-section {
+  position: relative;
+
+  width: 100%;
+
+  padding: 80px 0;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      #183f2c 0%,
+      #0b2116 34%,
+      #06100b 72%,
+      #030806 100%
+    );
+}
+
+
+/* =========================================
+   SUBTLE LIGHT
+========================================= */
+
+.agri-marquee-section::before {
+  content: "";
+
+  position: absolute;
+
+  top: -180px;
+
+  left: 50%;
+
+  width: 650px;
+
+  height: 350px;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+
+  background:
+    rgba(72, 150, 100, 0.08);
+
+  filter: blur(90px);
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   WRAPPER
+========================================= */
+
+.agri-marquee-wrapper {
+  position: relative;
+
+  z-index: 1;
+
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+
+/* =========================================
+   ROW
+========================================= */
+
+.agri-marquee {
+  position: relative;
+
+  width: 100%;
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   TRACK
+
+   IMPORTANT:
+   Two identical .agri-set elements
+   are placed side-by-side.
+
+   0% -> first set
+   50% -> second set
+
+   This creates the seamless loop.
+========================================= */
+
+.agri-track {
+  display: flex;
+
+  width: max-content;
+
+  flex-shrink: 0;
+
+  will-change: transform;
+
+  backface-visibility: hidden;
+
+  transform: translate3d(0, 0, 0);
+}
+
+
+/* =========================================
+   SET
+========================================= */
+
+.agri-set {
+  display: flex;
+
+  flex-shrink: 0;
+
+  gap: 18px;
+
+  padding-right: 18px;
+}
+
+
+/* =========================================
+   CARD
+========================================= */
+
+.agri-card {
+  position: relative;
+
+  width: 280px;
+
+  height: 280px;
+
+  flex-shrink: 0;
+
+  padding: 0;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.07);
+
+  border-radius: 18px;
+
+  background: #101c15;
+
+  appearance: none;
+
+  cursor: pointer;
+
+  isolation: isolate;
+
+  transition:
+    transform 0.45s
+      cubic-bezier(0.2, 0.7, 0.2, 1),
+    border-color 0.45s ease,
+    box-shadow 0.45s ease;
+}
+
+
+.agri-card::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 2;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08),
+      transparent 35%
+    );
+
+  opacity: 0;
+
+  transition:
+    opacity 0.4s ease;
+}
+
+
+.agri-card:hover {
+
+  transform:
+    translateY(-7px)
+    scale(1.01);
+
+  border-color:
+    rgba(255, 255, 255, 0.18);
+
+  box-shadow:
+    0 25px 70px
+    rgba(0, 0, 0, 0.48);
+
+  z-index: 4;
+}
+
+
+.agri-card:hover::after {
+  opacity: 1;
+}
+
+
+/* =========================================
+   IMAGE
+========================================= */
+
+.agri-card img {
+  width: 100%;
+
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  user-select: none;
+
+  pointer-events: none;
+
+  -webkit-user-drag: none;
+
+  transition:
+    transform 0.8s
+      cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+
+.agri-card:hover img {
+  transform: scale(1.06);
+}
+
+
+/* =========================================
+   LEFT
+========================================= */
+
+.agri-track-left {
+  animation:
+    agri-scroll-left
+    var(--agri-speed, 35s)
+    linear
+    infinite;
+
+  animation-play-state: running;
+}
+
+
+/* =========================================
+   RIGHT
+========================================= */
+
+.agri-track-right {
+  animation:
+    agri-scroll-right
+    var(--agri-speed, 35s)
+    linear
+    infinite;
+
+  animation-play-state: running;
+}
+
+
+/* =========================================
+   LEFT KEYFRAME
+========================================= */
+
+@keyframes agri-scroll-left {
+
+  from {
+    transform:
+      translate3d(0, 0, 0);
+  }
+
+  to {
+    transform:
+      translate3d(-50%, 0, 0);
+  }
+
+}
+
+
+/* =========================================
+   RIGHT KEYFRAME
+========================================= */
+
+@keyframes agri-scroll-right {
+
+  from {
+    transform:
+      translate3d(-50%, 0, 0);
+  }
+
+  to {
+    transform:
+      translate3d(0, 0, 0);
+  }
+
+}
+
+
+/* =========================================
+   PAUSE ON HOVER
+
+   Only pause when hovering the row.
+========================================= */
+
+.agri-marquee:hover
+.agri-track {
+  animation-play-state: paused;
+}
+
+
+/* =========================================
+   EDGE FADE
+========================================= */
+
+.agri-marquee::before,
+.agri-marquee::after {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+
+  bottom: 0;
+
+  width: 130px;
+
+  z-index: 10;
+
+  pointer-events: none;
+}
+
+
+.agri-marquee::before {
+
+  left: 0;
+
+  background:
+    linear-gradient(
+      to right,
+      #07130d 0%,
+      rgba(7, 19, 13, 0.82) 28%,
+      rgba(7, 19, 13, 0) 100%
+    );
+
+}
+
+
+.agri-marquee::after {
+
+  right: 0;
+
+  background:
+    linear-gradient(
+      to left,
+      #07130d 0%,
+      rgba(7, 19, 13, 0.82) 28%,
+      rgba(7, 19, 13, 0) 100%
+    );
+
+}
+
+
+/* =========================================
+   VIEW ALL WRAPPER
+========================================= */
+
+.agri-view-wrapper {
+
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  justify-content: center;
+
+  margin-top: 55px;
+
+  padding: 0 20px;
+}
+
+
+/* =========================================
+   VIEW ALL BUTTON
+========================================= */
+
+.agri-view-all {
+
+  position: relative;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 11px;
+
+  padding: 15px 25px 15px 29px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.14);
+
+  border-radius: 999px;
+
+  background:
+    rgba(255, 255, 255, 0.045);
+
+  color:
+    rgba(255, 255, 255, 0.92);
+
+  font-family: inherit;
+
+  font-size: 13px;
+
+  font-weight: 500;
+
+  letter-spacing: 0.4px;
+
+  cursor: pointer;
+
+  backdrop-filter:
+    blur(14px);
+
+  -webkit-backdrop-filter:
+    blur(14px);
+
+  transition:
+    background 0.35s ease,
+    border-color 0.35s ease,
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+
+.agri-view-all svg {
+
+  width: 17px;
+
+  height: 17px;
+
+  fill: none;
+
+  stroke: currentColor;
+
+  stroke-width: 1.7;
+
+  stroke-linecap: round;
+
+  stroke-linejoin: round;
+
+  transition:
+    transform 0.35s
+    cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+
+.agri-view-all:hover {
+
+  background:
+    rgba(255, 255, 255, 0.09);
+
+  border-color:
+    rgba(255, 255, 255, 0.27);
+
+  transform:
+    translateY(-3px);
+
+  box-shadow:
+    0 18px 45px
+    rgba(0, 0, 0, 0.28);
+}
+
+
+.agri-view-all:hover svg {
+
+  transform:
+    translateX(4px);
+}
+
+
+.agri-view-all:active {
+
+  transform:
+    translateY(-1px);
+
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1100px) {
+
+  .agri-card {
+
+    width: 230px;
+
+    height: 230px;
+
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+  .agri-marquee-section {
+
+    padding: 55px 0;
+
+  }
+
+
+  .agri-marquee-wrapper {
+
+    gap: 12px;
+
+  }
+
+
+  .agri-set {
+
+    gap: 12px;
+
+    padding-right: 12px;
+
+  }
+
+
+  .agri-card {
+
+    width: 175px;
+
+    height: 175px;
+
+    border-radius: 13px;
+
+  }
+
+
+  .agri-marquee::before,
+  .agri-marquee::after {
+
+    width: 65px;
+
+  }
+
+
+  .agri-view-wrapper {
+
+    margin-top: 40px;
+
+  }
+
+
+  .agri-view-all {
+
+    padding:
+      13px
+      22px
+      13px
+      24px;
+
+    font-size: 12px;
+
+  }
+
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 430px) {
+
+  .agri-card {
+
+    width: 155px;
+
+    height: 155px;
+
+  }
+
+
+  .agri-track-left {
+
+    animation-duration: 30s;
+
+  }
+
+
+  .agri-track-right {
+
+    animation-duration: 33s;
+
+  }
+
+}
+
+
+/* =========================================
+   IMPORTANT
+
+   DO NOT pause animation based on
+   prefers-reduced-motion because you
+   specifically want continuous scrolling.
+========================================= */
