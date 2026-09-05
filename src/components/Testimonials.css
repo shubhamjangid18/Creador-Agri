@@ -4,7 +4,7 @@
 
 .ts-section {
   position: relative;
-  padding: 72px 6% 60px;
+  padding: 72px 6% 56px;
   background: #f2f5ee;
   overflow: hidden;
 }
@@ -247,30 +247,6 @@
   to   { transform: scaleX(1); }
 }
 
-/* ── Footer ── */
-.ts-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  padding-top: 22px;
-  margin-top: 4px;
-}
-.ts-footer span {
-  font-size: 8.5px;
-  font-weight: 700;
-  letter-spacing: 2.5px;
-  color: #5c9368;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-.ts-footer p {
-  margin: 0;
-  font-size: 11.5px;
-  color: rgba(16,37,27,0.4);
-  text-align: right;
-}
-
 /* ============================================================
    RESPONSIVE
    ============================================================ */
@@ -283,7 +259,7 @@
 }
 
 @media (max-width: 560px) {
-  .ts-section { padding: 56px 5% 48px; }
+  .ts-section { padding: 56px 5% 44px; }
   .ts-head { margin-bottom: 28px; }
   .ts-grid { grid-template-columns: 1fr; }
   .ts-grid > .ts-card:nth-child(2),
@@ -303,9 +279,6 @@
   .ts-arrow--next:hover { transform: none; }
 
   .ts-dots { margin-top: 64px; }
-
-  .ts-footer { flex-direction: column; align-items: flex-start; gap: 6px; }
-  .ts-footer p { text-align: left; }
 }
 
 @media (prefers-reduced-motion: reduce) {

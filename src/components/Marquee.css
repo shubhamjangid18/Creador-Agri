@@ -628,3 +628,382 @@
    prefers-reduced-motion because you
    specifically want continuous scrolling.
 ========================================= */
+
+
+/* =========================================
+   INLINE PREMIUM VIEWER (LIGHTBOX)
+
+   Same-page product viewer.
+   Opens on single image click —
+   no new tab.
+========================================= */
+
+.agri-viewer {
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 9999;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 40px;
+
+  background:
+    rgba(3, 8, 6, 0.97);
+
+  backdrop-filter:
+    blur(20px);
+
+  -webkit-backdrop-filter:
+    blur(20px);
+
+  animation:
+    agri-viewer-fade-in
+    0.25s ease;
+
+}
+
+
+@keyframes agri-viewer-fade-in {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+
+}
+
+
+/* =========================================
+   IMAGE
+========================================= */
+
+.agri-viewer-image {
+
+  max-width: 86vw;
+
+  max-height: 86vh;
+
+  width: auto;
+
+  height: auto;
+
+  object-fit: contain;
+
+  border-radius: 16px;
+
+  user-select: none;
+
+  -webkit-user-drag: none;
+
+  pointer-events: none;
+
+  box-shadow:
+    0 40px 130px
+    rgba(0, 0, 0, 0.78),
+    0 0 0 1px
+    rgba(255, 255, 255, 0.06);
+
+  animation:
+    agri-viewer-image-in
+    0.35s
+    cubic-bezier(0.2, 0.7, 0.2, 1);
+
+}
+
+
+@keyframes agri-viewer-image-in {
+
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.agri-viewer-button {
+
+  position: absolute;
+
+  width: 56px;
+
+  height: 56px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 0;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.14);
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.06);
+
+  color: rgba(255, 255, 255, 0.92);
+
+  appearance: none;
+
+  cursor: pointer;
+
+  backdrop-filter:
+    blur(14px);
+
+  -webkit-backdrop-filter:
+    blur(14px);
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+}
+
+
+.agri-viewer-button svg {
+
+  width: 22px;
+
+  height: 22px;
+
+  stroke: currentColor;
+
+  fill: none;
+
+  stroke-width: 1.7;
+
+  stroke-linecap: round;
+
+  stroke-linejoin: round;
+
+}
+
+
+.agri-viewer-button:hover {
+
+  background:
+    rgba(255, 255, 255, 0.13);
+
+  border-color:
+    rgba(255, 255, 255, 0.28);
+
+  box-shadow:
+    0 12px 38px
+    rgba(0, 0, 0, 0.4);
+
+}
+
+
+/* =========================================
+   LEFT
+========================================= */
+
+.agri-viewer-button-left {
+
+  left: 30px;
+
+  top: 50%;
+
+  transform:
+    translateY(-50%);
+
+}
+
+
+.agri-viewer-button-left:hover {
+
+  transform:
+    translateY(-50%)
+    scale(1.08);
+
+}
+
+
+/* =========================================
+   RIGHT
+========================================= */
+
+.agri-viewer-button-right {
+
+  right: 30px;
+
+  top: 50%;
+
+  transform:
+    translateY(-50%);
+
+}
+
+
+.agri-viewer-button-right:hover {
+
+  transform:
+    translateY(-50%)
+    scale(1.08);
+
+}
+
+
+/* =========================================
+   CLOSE
+========================================= */
+
+.agri-viewer-button-close {
+
+  top: 25px;
+
+  right: 30px;
+
+}
+
+
+.agri-viewer-button-close:hover {
+
+  transform:
+    rotate(90deg)
+    scale(1.08);
+
+}
+
+
+/* =========================================
+   COUNTER
+========================================= */
+
+.agri-viewer-counter {
+
+  position: absolute;
+
+  bottom: 28px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  padding: 8px 18px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.12);
+
+  border-radius: 999px;
+
+  background:
+    rgba(255, 255, 255, 0.05);
+
+  color:
+    rgba(255, 255, 255, 0.75);
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  font-weight: 500;
+
+  letter-spacing: 0.4px;
+
+  backdrop-filter:
+    blur(12px);
+
+  -webkit-backdrop-filter:
+    blur(12px);
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 750px) {
+
+  .agri-viewer {
+
+    padding: 18px;
+
+  }
+
+
+  .agri-viewer-image {
+
+    max-width: 90vw;
+
+    max-height: 80vh;
+
+    border-radius: 12px;
+
+  }
+
+
+  .agri-viewer-button {
+
+    width: 44px;
+
+    height: 44px;
+
+  }
+
+
+  .agri-viewer-button svg {
+
+    width: 19px;
+
+    height: 19px;
+
+  }
+
+
+  .agri-viewer-button-left {
+    left: 8px;
+  }
+
+
+  .agri-viewer-button-right {
+    right: 8px;
+  }
+
+
+  .agri-viewer-button-close {
+
+    top: 12px;
+
+    right: 12px;
+
+  }
+
+
+  .agri-viewer-counter {
+
+    bottom: 16px;
+
+    font-size: 11px;
+
+  }
+
+}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./Marquee.css";
 
 /* =========================================
@@ -32,16 +32,8 @@ const ROWS = [
 
 
 /* =========================================
-   OPEN SINGLE PRODUCT
-========================================= */
-
-const openProduct = (image) => {
-  window.open(image, "_blank");
-};
-
-
-/* =========================================
    OPEN ALL PRODUCTS
+   (unchanged — still opens a new tab)
 ========================================= */
 
 const openAllProducts = () => {
@@ -972,6 +964,7 @@ const MarqueeRow = ({
   images,
   direction,
   speed = 32,
+  onOpen,
 }) => {
 
   return (
@@ -1004,7 +997,7 @@ const MarqueeRow = ({
                 key={`first-${image}-${index}`}
                 type="button"
                 onClick={() =>
-                  openProduct(image)
+                  onOpen(image)
                 }
                 aria-label="Open product"
               >
@@ -1042,7 +1035,7 @@ const MarqueeRow = ({
                 key={`second-${image}-${index}`}
                 type="button"
                 onClick={() =>
-                  openProduct(image)
+                  onOpen(image)
                 }
                 tabIndex={-1}
               >
@@ -1069,10 +1062,289 @@ const MarqueeRow = ({
 
 
 /* =========================================
+   INLINE PREMIUM VIEWER (LIGHTBOX)
+
+   Opens on the same page — no new tab.
+   Navigates across the full product set.
+========================================= */
+
+const ProductViewer = ({
+  isOpen,
+  currentIndex,
+  onClose,
+  onNext,
+  onPrevious,
+}) => {
+
+  /* LOCK SCROLL WHILE OPEN */
+
+  useEffect(() => {
+
+    if (isOpen) {
+
+      document.body.style.overflow =
+        "hidden";
+
+    } else {
+
+      document.body.style.overflow =
+        "";
+
+    }
+
+
+    return () => {
+
+      document.body.style.overflow =
+        "";
+
+    };
+
+  }, [isOpen]);
+
+
+  /* KEYBOARD NAVIGATION */
+
+  useEffect(() => {
+
+    if (!isOpen) return;
+
+
+    const handleKeyDown = (
+      event
+    ) => {
+
+      if (event.key === "Escape") {
+
+        onClose();
+
+      }
+
+
+      if (
+        event.key ===
+        "ArrowRight"
+      ) {
+
+        onNext();
+
+      }
+
+
+      if (
+        event.key ===
+        "ArrowLeft"
+      ) {
+
+        onPrevious();
+
+      }
+
+    };
+
+
+    document.addEventListener(
+      "keydown",
+      handleKeyDown
+    );
+
+
+    return () =>
+      document.removeEventListener(
+        "keydown",
+        handleKeyDown
+      );
+
+  }, [isOpen, onClose, onNext, onPrevious]);
+
+
+  if (!isOpen) return null;
+
+
+  return (
+
+    <div
+      className="agri-viewer active"
+      onClick={(event) => {
+
+        if (
+          event.target ===
+          event.currentTarget
+        ) {
+
+          onClose();
+
+        }
+
+      }}
+    >
+
+      {/* PREVIOUS */}
+
+      <button
+        className="agri-viewer-button agri-viewer-button-left"
+        onClick={onPrevious}
+        aria-label="Previous product"
+        type="button"
+      >
+
+        <svg
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+
+          <path d="M15 5L8 12L15 19"></path>
+
+        </svg>
+
+      </button>
+
+
+      {/* IMAGE */}
+
+      <img
+        className="agri-viewer-image"
+        src={PRODUCTS[currentIndex]}
+        alt=""
+        draggable="false"
+        key={currentIndex}
+      />
+
+
+      {/* NEXT */}
+
+      <button
+        className="agri-viewer-button agri-viewer-button-right"
+        onClick={onNext}
+        aria-label="Next product"
+        type="button"
+      >
+
+        <svg
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+
+          <path d="M9 5L16 12L9 19"></path>
+
+        </svg>
+
+      </button>
+
+
+      {/* CLOSE */}
+
+      <button
+        className="agri-viewer-button agri-viewer-button-close"
+        onClick={onClose}
+        aria-label="Close"
+        type="button"
+      >
+
+        <svg
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+
+          <path d="M6 6L18 18"></path>
+
+          <path d="M18 6L6 18"></path>
+
+        </svg>
+
+      </button>
+
+
+      {/* COUNTER */}
+
+      <div className="agri-viewer-counter">
+
+        {currentIndex + 1}
+        {" / "}
+        {PRODUCTS.length}
+
+      </div>
+
+    </div>
+
+  );
+};
+
+
+/* =========================================
    MAIN
 ========================================= */
 
 const Marquee = () => {
+
+  const [
+    viewerOpen,
+    setViewerOpen,
+  ] = useState(false);
+
+
+  const [
+    viewerIndex,
+    setViewerIndex,
+  ] = useState(0);
+
+
+  const openInlineViewer = useCallback(
+    (image) => {
+
+      const index =
+        PRODUCTS.indexOf(image);
+
+
+      setViewerIndex(
+        index === -1 ? 0 : index
+      );
+
+
+      setViewerOpen(true);
+
+    },
+    []
+  );
+
+
+  const closeInlineViewer =
+    useCallback(() => {
+
+      setViewerOpen(false);
+
+    }, []);
+
+
+  const showNext = useCallback(
+    () => {
+
+      setViewerIndex(
+        (previous) =>
+          (previous + 1) %
+          PRODUCTS.length
+      );
+
+    },
+    []
+  );
+
+
+  const showPrevious = useCallback(
+    () => {
+
+      setViewerIndex(
+        (previous) =>
+          (previous -
+            1 +
+            PRODUCTS.length) %
+          PRODUCTS.length
+      );
+
+    },
+    []
+  );
+
 
   return (
 
@@ -1088,6 +1360,7 @@ const Marquee = () => {
           images={ROWS[0]}
           direction="left"
           speed={34}
+          onOpen={openInlineViewer}
         />
 
 
@@ -1095,6 +1368,7 @@ const Marquee = () => {
           images={ROWS[1]}
           direction="right"
           speed={37}
+          onOpen={openInlineViewer}
         />
 
 
@@ -1102,6 +1376,7 @@ const Marquee = () => {
           images={ROWS[2]}
           direction="left"
           speed={40}
+          onOpen={openInlineViewer}
         />
 
       </div>
@@ -1139,6 +1414,17 @@ const Marquee = () => {
         </button>
 
       </div>
+
+
+      {/* INLINE PREMIUM VIEWER */}
+
+      <ProductViewer
+        isOpen={viewerOpen}
+        currentIndex={viewerIndex}
+        onClose={closeInlineViewer}
+        onNext={showNext}
+        onPrevious={showPrevious}
+      />
 
     </section>
 

@@ -36,7 +36,7 @@ const TESTIMONIALS = [
     initials: "PN",
   },
   {
-    quote: "From concept to shelf-ready packs in six weeks. Communication was sharp and revisions were fast — rare for packaging vendors.",
+    quote: "From concept to shelf-ready packs in six weeks. Communication was sharp and revisions were fast rare for packaging vendors.",
     client: "Arjun Mehta",
     company: "Nutricrop India",
     role: "Operations Lead",
@@ -177,18 +177,6 @@ export default function Testimonials() {
             </button>
           ))}
         </div>
-
-        {/* Footer */}
-        <motion.div
-          className="ts-footer"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55, delay: 0.15 }}
-        >
-          <span>BUILT ON RESULTS</span>
-          <p>Good design gets noticed. Great design gets remembered.</p>
-        </motion.div>
 
       </div>
     </section>

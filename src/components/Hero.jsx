@@ -84,8 +84,8 @@ export default function Hero({ onContactClick }) {
           </div>
 
           <h1 className="hero__headline">
-            Packaging That Sells
-            <span>Before a Word Is Read</span>
+            Specialized in Agriculture 
+            <span>Packaging Designs</span>
           </h1>
 
           <p className="hero__sub">

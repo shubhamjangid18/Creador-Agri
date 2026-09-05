@@ -1,225 +1,60 @@
-/* ========================================
-   PREMIUM COMPACT SERVICES
-======================================== */
+/* =========================================
+   SERVICES SECTION
+========================================= */
 
 .services {
   position: relative;
-  padding: 90px 6vw;
+  width: 100%;
 
-  overflow: hidden;
+  padding: 130px 0 0;
+  margin: 0;
 
   background:
-    linear-gradient(
-      135deg,
-      #071109 0%,
-      #0b1b0d 50%,
-      #071109 100%
-    );
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(79, 169, 106, 0.10),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 10% 85%,
+      rgba(63, 152, 88, 0.08),
+      transparent 30%
+    ),
+    #061a09;
 
-  color: #f7f5ee;
+  color: #f4faf5;
+
+  overflow: hidden;
 }
 
 
-/* Premium background glow */
+/* =========================================
+   BACKGROUND GLOW
+========================================= */
 
 .services::before {
   content: "";
 
   position: absolute;
 
-  width: 500px;
-  height: 500px;
+  width: 650px;
+  height: 650px;
 
-  top: -250px;
-  right: -150px;
+  top: -300px;
+  right: -250px;
 
-  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(121, 200, 137, 0.15),
+    transparent 68%
+  );
 
-  background:
-    radial-gradient(
-      circle,
-      rgba(163, 190, 0, 0.13),
-      transparent 70%
-    );
+  filter: blur(20px);
 
   pointer-events: none;
 }
-
-
-/* Subtle background lines */
 
 .services::after {
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  opacity: 0.3;
-
-  background-image:
-    linear-gradient(
-      rgba(255,255,255,0.025) 1px,
-      transparent 1px
-    );
-
-  background-size: 100% 90px;
-
-  pointer-events: none;
-}
-
-
-/* ========================================
-   CONTAINER
-======================================== */
-
-.services__container {
-  position: relative;
-
-  z-index: 2;
-
-  max-width: 1250px;
-
-  margin: auto;
-}
-
-
-/* ========================================
-   HEADER
-======================================== */
-
-.services__header {
-  display: grid;
-
-  grid-template-columns: 1.3fr 0.7fr;
-
-  gap: 60px;
-
-  align-items: end;
-
-  margin-bottom: 55px;
-}
-
-
-/* Eyebrow */
-
-.services__eyebrow {
-  grid-column: 1 / -1;
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 12px;
-
-  color: #cce54f;
-
-  font-size: 10px;
-
-  font-weight: 700;
-
-  letter-spacing: 0.18em;
-}
-
-
-.services__eyebrow span {
-  width: 35px;
-  height: 1px;
-
-  background: #cce54f;
-}
-
-
-/* Heading */
-
-.services__header h2 {
-  margin: 0;
-
-  font-family:
-    Georgia,
-    'Times New Roman',
-    serif;
-
-  font-size:
-    clamp(2.8rem, 5vw, 5.2rem);
-
-  font-weight: 400;
-
-  line-height: 1;
-
-  letter-spacing: -0.04em;
-}
-
-
-.services__header h2 em {
-  color: #cce54f;
-
-  font-style: italic;
-}
-
-
-/* Intro */
-
-.services__header p {
-  margin: 0;
-
-  max-width: 380px;
-
-  color:
-    rgba(247,245,238,0.62);
-
-  font-size: 15px;
-
-  line-height: 1.7;
-}
-
-
-/* ========================================
-   SERVICES LIST
-======================================== */
-
-.services__list {
-  border-top:
-    1px solid
-    rgba(255,255,255,0.13);
-}
-
-
-/* ========================================
-   SERVICE ROW
-======================================== */
-
-.service {
-  position: relative;
-
-  display: grid;
-
-  grid-template-columns:
-    70px
-    minmax(0, 1fr)
-    60px;
-
-  gap: 25px;
-
-  align-items: center;
-
-  padding: 28px 20px;
-
-  border-bottom:
-    1px solid
-    rgba(255,255,255,0.13);
-
-  transition:
-    background 0.35s ease,
-    transform 0.35s ease;
-
-  overflow: hidden;
-}
-
-
-/* Hover background */
-
-.service::before {
   content: "";
 
   position: absolute;
@@ -229,269 +64,608 @@
   background:
     linear-gradient(
       90deg,
-      rgba(163,190,0,0.12),
-      transparent
+      transparent 49.9%,
+      rgba(167, 227, 181, 0.025) 50%,
+      transparent 50.1%
     );
 
-  opacity: 0;
-
-  transition:
-    opacity 0.35s ease;
+  opacity: 0.5;
 
   pointer-events: none;
 }
 
 
+/* =========================================
+   CONTAINER
+========================================= */
+
+.services__container {
+  position: relative;
+  z-index: 2;
+
+  width: min(1180px, calc(100% - 60px));
+
+  margin: 0 auto;
+  padding: 0;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.services__header {
+  max-width: 850px;
+
+  margin: 0 0 75px;
+  padding: 0;
+}
+
+
+/* =========================================
+   EYEBROW
+========================================= */
+
+.services__eyebrow {
+  display: flex;
+
+  align-items: center;
+  gap: 16px;
+
+  margin: 0 0 28px;
+  padding: 0;
+
+  color: #a7e3b5;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  letter-spacing: 0.20em;
+  line-height: 1;
+
+  text-shadow:
+    0 0 18px rgba(167, 227, 181, 0.18);
+}
+
+.services__eyebrow span {
+  display: block;
+
+  width: 48px;
+  height: 2px;
+
+  flex-shrink: 0;
+
+  background: linear-gradient(
+    90deg,
+    #a7e3b5,
+    #4fa96a
+  );
+
+  box-shadow:
+    0 0 12px rgba(125, 204, 145, 0.28);
+}
+
+
+/* =========================================
+   MAIN HEADING
+========================================= */
+
+.services__header h2 {
+  margin: 0;
+  padding: 0;
+
+  color: #f4faf5;
+
+  font-size: clamp(48px, 6vw, 78px);
+
+  font-weight: 500;
+
+  line-height: 0.98;
+
+  letter-spacing: -0.045em;
+}
+
+.services__header h2 em {
+  margin: 0;
+  padding: 0;
+
+  color: #7dcc91;
+
+  font-style: normal;
+
+  text-shadow:
+    0 0 30px rgba(125, 204, 145, 0.12);
+}
+
+
+/* =========================================
+   HEADER DESCRIPTION
+========================================= */
+
+.services__header p {
+  max-width: 600px;
+
+  margin: 28px 0 0;
+  padding: 0;
+
+  color: rgba(232, 244, 235, 0.62);
+
+  font-size: 16px;
+
+  line-height: 1.7;
+
+  letter-spacing: 0.01em;
+}
+
+
+/* =========================================
+   SERVICES LIST
+========================================= */
+
+.services__list {
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+}
+
+
+/* =========================================
+   SERVICE ROW
+========================================= */
+
+.service {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns: 100px 1fr 70px;
+
+  align-items: center;
+
+  width: 100%;
+  min-height: 155px;
+
+  margin: 0;
+  padding: 0;
+
+  border-top: 1px solid rgba(125, 204, 145, 0.18);
+
+  transition:
+    border-color 0.4s ease,
+    background 0.4s ease,
+    transform 0.4s ease;
+
+  cursor: default;
+}
+
+
+/* Last service */
+
+.service:last-child {
+  border-bottom: 1px solid rgba(125, 204, 145, 0.18);
+}
+
+
+/* =========================================
+   LEFT HOVER LINE
+========================================= */
+
+.service::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  top: 0;
+
+  width: 0;
+  height: 100%;
+
+  background: linear-gradient(
+    180deg,
+    #a7e3b5,
+    #3f9858
+  );
+
+  opacity: 0;
+
+  transition:
+    width 0.4s ease,
+    opacity 0.4s ease;
+}
+
+
+/* =========================================
+   HOVER
+========================================= */
+
+.service:hover {
+  padding-left: 18px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(63, 152, 88, 0.08),
+      transparent 65%
+    );
+
+  border-color:
+    rgba(125, 204, 145, 0.30);
+
+  transform: translateX(4px);
+}
+
 .service:hover::before {
+  width: 2px;
+
   opacity: 1;
 }
 
 
-.service:hover {
-  transform: translateX(8px);
-}
-
-
-/* ========================================
+/* =========================================
    NUMBER
-======================================== */
+========================================= */
 
 .service__number {
-  position: relative;
+  align-self: center;
 
-  z-index: 1;
+  color: #7dcc91;
 
-  color: #cce54f;
+  font-size: 14px;
+  font-weight: 600;
 
-  font-size: 11px;
+  letter-spacing: 0.08em;
 
-  font-weight: 700;
+  opacity: 0.85;
 
-  letter-spacing: 0.1em;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.service:hover .service__number {
+  color: #a7e3b5;
+
+  transform: translateX(3px);
 }
 
 
-/* ========================================
-   CONTENT
-======================================== */
+/* =========================================
+   SERVICE CONTENT
+========================================= */
 
 .service__content {
-  position: relative;
-
-  z-index: 1;
-
-  display: grid;
-
-  grid-template-columns:
-    minmax(220px, 0.9fr)
-    minmax(300px, 1.1fr);
-
-  gap: 45px;
-
-  align-items: center;
+  margin: 0;
+  padding: 30px 20px 30px 0;
 }
 
 
+/* =========================================
+   SERVICE TITLE
+========================================= */
+
 .service__content h3 {
-  margin: 0;
+  margin: 0 0 12px;
+  padding: 0;
 
-  font-family:
-    Georgia,
-    'Times New Roman',
-    serif;
+  color: #f3f8f4;
 
-  font-size:
-    clamp(1.45rem, 2.3vw, 2.1rem);
+  font-size: clamp(25px, 2.6vw, 36px);
 
-  font-weight: 400;
+  font-weight: 500;
 
   line-height: 1.15;
 
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.service:hover .service__content h3 {
+  color: #7dcc91;
+
+  transform: translateX(3px);
+}
+
+
+/* =========================================
+   SERVICE DESCRIPTION
+========================================= */
+
+.service__content p {
+  max-width: 680px;
+
+  margin: 0;
+  padding: 0;
+
+  color: rgba(225, 239, 228, 0.55);
+
+  font-size: 14px;
+
+  line-height: 1.7;
 
   transition:
     color 0.3s ease;
 }
 
-
-.service:hover h3 {
-  color: #cce54f;
+.service:hover .service__content p {
+  color: rgba(225, 239, 228, 0.72);
 }
 
 
-.service__content p {
-  margin: 0;
-
-  color:
-    rgba(247,245,238,0.55);
-
-  font-size: 13px;
-
-  line-height: 1.65;
-}
-
-
-/* ========================================
+/* =========================================
    ARROW
-======================================== */
+========================================= */
 
 .service__arrow {
-  position: relative;
-
-  z-index: 1;
-
   display: flex;
 
+  align-items: center;
   justify-content: flex-end;
+
+  margin: 0;
+  padding: 0;
 }
 
-
 .service__arrow span {
-  width: 38px;
-  height: 38px;
-
   display: flex;
 
   align-items: center;
   justify-content: center;
 
-  border:
-    1px solid
-    rgba(255,255,255,0.18);
+  width: 48px;
+  height: 48px;
+
+  margin: 0;
+  padding: 0;
+
+  border: 1px solid rgba(125, 204, 145, 0.30);
 
   border-radius: 50%;
 
-  color:
-    rgba(247,245,238,0.8);
+  color: #7dcc91;
 
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: 300;
 
   transition:
-    all 0.35s ease;
+    background 0.35s ease,
+    border-color 0.35s ease,
+    color 0.35s ease,
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
+
+/* =========================================
+   ARROW HOVER
+========================================= */
 
 .service:hover .service__arrow span {
-  background: #cce54f;
+  color: #061a09;
 
-  border-color: #cce54f;
+  background: #7dcc91;
 
-  color: #071109;
+  border-color: #7dcc91;
 
-  transform:
-    rotate(45deg);
+  transform: rotate(45deg);
+
+  box-shadow:
+    0 0 25px rgba(125, 204, 145, 0.18);
 }
 
 
-/* ========================================
-   BOTTOM
-======================================== */
+/* =========================================
+   TABLET
+========================================= */
 
-.services__bottom {
-  display: flex;
-
-  align-items: center;
-
-  gap: 20px;
-
-  margin-top: 35px;
-
-  color:
-    rgba(204,229,79,0.75);
-
-  font-size: 9px;
-
-  font-weight: 700;
-
-  letter-spacing: 0.16em;
-}
-
-
-.services__line {
-  height: 1px;
-
-  flex: 1;
-
-  background:
-    rgba(255,255,255,0.12);
-}
-
-
-/* ========================================
-   RESPONSIVE
-======================================== */
-
-@media (max-width: 850px) {
+@media (max-width: 900px) {
 
   .services {
-    padding: 75px 6vw;
+    padding: 100px 0 0;
   }
 
+  .services__container {
+    width: min(
+      calc(100% - 40px),
+      760px
+    );
+  }
 
   .services__header {
-    grid-template-columns: 1fr;
-
-    gap: 25px;
-
-    margin-bottom: 45px;
+    margin-bottom: 55px;
   }
 
+  .service {
+    grid-template-columns: 70px 1fr 60px;
 
-  .service__content {
-    grid-template-columns: 1fr;
-
-    gap: 12px;
+    min-height: 140px;
   }
 
+  .service__content h3 {
+    font-size: 28px;
+  }
+
+  .service__content p {
+    max-width: 560px;
+  }
 }
 
+
+/* =========================================
+   MOBILE
+========================================= */
 
 @media (max-width: 600px) {
 
   .services {
-    padding: 65px 5vw;
+    padding: 85px 0 0;
   }
 
+  .services__container {
+    width: calc(100% - 32px);
+  }
+
+
+  /* HEADER */
+
+  .services__header {
+    margin-bottom: 45px;
+  }
+
+
+  /* EYEBROW */
+
+  .services__eyebrow {
+    gap: 12px;
+
+    margin-bottom: 22px;
+
+    font-size: 12px;
+
+    letter-spacing: 0.17em;
+  }
+
+  .services__eyebrow span {
+    width: 34px;
+    height: 2px;
+  }
+
+
+  /* HEADING */
 
   .services__header h2 {
-    font-size:
-      clamp(2.5rem, 12vw, 4rem);
+    font-size: clamp(
+      42px,
+      12vw,
+      58px
+    );
+
+    line-height: 1;
   }
 
+
+  /* DESCRIPTION */
+
+  .services__header p {
+    margin-top: 22px;
+
+    font-size: 14px;
+
+    line-height: 1.65;
+  }
+
+
+  /* SERVICE */
 
   .service {
     grid-template-columns:
-      40px
-      1fr;
+      45px
+      1fr
+      42px;
 
-    gap: 15px;
+    min-height: 145px;
+  }
 
-    padding:
-      25px 0;
+  .service:hover {
+    padding-left: 10px;
+
+    transform: translateX(2px);
   }
 
 
-  .service__arrow {
-    display: none;
+  /* NUMBER */
+
+  .service__number {
+    font-size: 11px;
   }
 
+
+  /* CONTENT */
+
+  .service__content {
+    padding: 28px 10px 28px 0;
+  }
+
+
+  /* TITLE */
 
   .service__content h3 {
-    font-size: 1.45rem;
+    margin-bottom: 9px;
+
+    font-size: 21px;
+
+    line-height: 1.2;
   }
 
+
+  /* DESCRIPTION */
 
   .service__content p {
-    font-size: 12.5px;
+    font-size: 12px;
+
+    line-height: 1.6;
   }
 
 
-  .services__bottom {
-    margin-top: 25px;
+  /* ARROW */
 
-    gap: 12px;
+  .service__arrow span {
+    width: 38px;
+    height: 38px;
 
-    font-size: 8px;
+    font-size: 16px;
+  }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+
+  .services__container {
+    width: calc(100% - 24px);
   }
 
+  .service {
+    grid-template-columns:
+      38px
+      1fr
+      38px;
+  }
+
+  .service__content h3 {
+    font-size: 19px;
+  }
+
+  .service__content p {
+    font-size: 11px;
+  }
+
+  .service__arrow span {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .service,
+  .service::before,
+  .service__number,
+  .service__content h3,
+  .service__content p,
+  .service__arrow span {
+    transition: none;
+  }
 }

@@ -60,7 +60,7 @@ export default function Footer() {
           <div className="footer__banner-text">
             <span className="footer__banner-eyebrow">Start a project</span>
             <h3>Got packaging on your mind?</h3>
-            <p>Tell us about your brand — we'll get back within one business day.</p>
+            <p>Tell us about your brand we'll get back within one business day.</p>
           </div>
 
           <form className="footer__subscribe" onSubmit={handleSubscribe}>

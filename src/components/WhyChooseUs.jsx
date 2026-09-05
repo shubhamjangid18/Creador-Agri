@@ -12,28 +12,24 @@ import "./WhyChooseUs.css";
 const FEATURES = [
   {
     icon: Target,
-    number: "01",
     title: "Industry-Specific Expertise",
     description:
       "Deep understanding of fertilizer, seed, and pesticide categories. Designs built for agri-input products.",
   },
   {
     icon: ShieldCheck,
-    number: "02",
     title: "Compliance-Aware Design",
     description:
       "GHS, regulatory, and statutory requirements considered from the start. Beautiful and audit-ready.",
   },
   {
     icon: Sprout,
-    number: "03",
     title: "Farmer-First Thinking",
     description:
       "Clear, practical designs made to communicate instantly in real-world rural retail environments.",
   },
   {
     icon: Zap,
-    number: "04",
     title: "Fast Turnaround",
     description:
       "From brief to print-ready files, we move quickly to match your production timelines.",
@@ -102,18 +98,14 @@ const WhyChooseUs = () => {
 
             return (
               <motion.div
-                key={feature.number}
+                key={feature.title}
                 className="why-card"
                 variants={cardVariants}
               >
                 <div className="why-card-top">
                   <div className="why-card-icon">
-                    <Icon size={22} strokeWidth={1.7} />
+                    <Icon size={26} strokeWidth={1.7} />
                   </div>
-
-                  <span className="why-card-number">
-                    {feature.number}
-                  </span>
                 </div>
 
                 <div className="why-card-content">
@@ -123,10 +115,8 @@ const WhyChooseUs = () => {
                 </div>
 
                 <div className="why-card-bottom">
-                  <span>CREADOR DESIGNS</span>
-
                   <ArrowUpRight
-                    size={18}
+                    size={20}
                     strokeWidth={1.5}
                   />
                 </div>

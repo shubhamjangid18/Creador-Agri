@@ -32,7 +32,18 @@ export default function Navbar({ onContactClick }) {
       <div className="nav__inner">
         
         {/* =================================================
-            LEFT SIDE — PREMIUM ACTION PILL (Phone + CTA)
+            LEFT SIDE — BIG WHITE CIRCLE LOGO
+        ================================================= */}
+        <a href="#top" className="nav__logo" onClick={handleLogoClick} aria-label="Creador Designs">
+          <img
+            src="/products/Creador Fertilizer Packagings/CreadorDesignsLogo.png"
+            alt="Creador Designs"
+            className="nav__logo-img"
+          />
+        </a>
+
+        {/* =================================================
+            RIGHT SIDE — PREMIUM ACTION PILL (Phone + CTA)
         ================================================= */}
         <div className="nav__action-pill">
           
@@ -41,7 +52,7 @@ export default function Navbar({ onContactClick }) {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
               <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.31.56 3.58.56a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.16 21 3 13.84 3 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.27.19 2.46.56 3.58a1 1 0 0 1-.24 1.01l-2.2 2.2Z" fill="currentColor"/>
             </svg>
-            <span className="nav__phone-text">+91 98765 43210</span>
+            <span className="nav__phone-text">+91 9325026968</span>
           </a>
 
           <div className="nav__divider" />
@@ -59,17 +70,6 @@ export default function Navbar({ onContactClick }) {
             </svg>
           </button>
         </div>
-
-        {/* =================================================
-            RIGHT SIDE — BIG WHITE CIRCLE LOGO
-        ================================================= */}
-        <a href="#top" className="nav__logo" onClick={handleLogoClick} aria-label="Creador Designs">
-          <img
-            src="/products/Creador Fertilizer Packagings/CreadorDesignsLogo.png"
-            alt="Creador Designs"
-            className="nav__logo-img"
-          />
-        </a>
         
       </div>
     </nav>

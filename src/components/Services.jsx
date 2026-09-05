@@ -21,9 +21,15 @@ const services = [
   },
   {
     number: '04',
-    title: '3D Mockups & Print-Ready Files',
+    title: 'Print-Ready & 3D Mockups',
     description:
-      'Photorealistic mockups to preview your packaging before printing, plus print-ready files your manufacturer can use directly.',
+      'Production-ready artwork and photorealistic 3D mockups that let you visualize your packaging clearly before it goes to print.',
+  },
+  {
+    number: '05',
+    title: 'Website Development',
+    description:
+      'Modern, responsive websites designed for agriculture brands — combining strong visuals, clear messaging, and a seamless experience across every device.',
   },
 ]
 
@@ -35,7 +41,7 @@ export default function Services() {
         {/* Header */}
         <div className="services__header">
           <div className="services__eyebrow">
-            <span />
+            <span></span>
             OUR SERVICES
           </div>
 
@@ -71,15 +77,6 @@ export default function Services() {
               </div>
             </article>
           ))}
-        </div>
-
-        {/* Bottom */}
-        <div className="services__bottom">
-          <span>DESIGNING FOR AGRICULTURE</span>
-
-          <div className="services__line" />
-
-          <span>01 — 04</span>
         </div>
 
       </div>

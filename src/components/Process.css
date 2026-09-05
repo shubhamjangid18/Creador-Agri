@@ -6,7 +6,7 @@
 .process-section {
   position: relative;
   width: 100%;
-  padding: 90px 6% 70px;
+  padding: 90px 6% 60px;
   overflow: hidden;
 
   background:
@@ -63,26 +63,26 @@
 ========================================================= */
 
 .process-header {
-  padding-bottom: 42px;
+  padding-bottom: 46px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.09);
 }
 
 .process-label {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 11px;
 
-  margin-bottom: 22px;
+  margin-bottom: 24px;
 
   color: #91cf9a;
-  font-size: 10px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 3px;
 }
 
 .process-label span {
-  width: 30px;
-  height: 1px;
+  width: 32px;
+  height: 2px;
   background: #82c98d;
 }
 
@@ -109,12 +109,12 @@
 }
 
 .process-heading p {
-  width: 330px;
+  width: 360px;
   margin: 0 0 5px;
 
-  color: rgba(244, 247, 241, 0.48);
+  color: rgba(244, 247, 241, 0.58);
 
-  font-size: 14px;
+  font-size: 17px;
   line-height: 1.75;
 }
 
@@ -126,7 +126,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
 
-  margin-top: 42px;
+  margin-top: 46px;
 }
 
 /* =========================================================
@@ -136,9 +136,9 @@
 .process-card {
   position: relative;
 
-  min-height: 205px;
+  min-height: 225px;
 
-  padding: 0 30px;
+  padding: 0 34px;
 
   border-left: 1px solid rgba(255, 255, 255, 0.09);
 
@@ -169,12 +169,12 @@
   align-items: center;
   justify-content: space-between;
 
-  margin-bottom: 40px;
+  margin-bottom: 44px;
 }
 
 .process-number {
-  width: 48px;
-  height: 48px;
+  width: 54px;
+  height: 54px;
 
   display: flex;
   align-items: center;
@@ -187,7 +187,7 @@
 
   color: #91d09b;
 
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   letter-spacing: 1px;
 
@@ -199,9 +199,9 @@
 }
 
 .process-card-arrow {
-  color: rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.2);
 
-  font-size: 21px;
+  font-size: 24px;
 
   transition:
     color 0.35s ease,
@@ -213,11 +213,11 @@
 ========================================================= */
 
 .process-card-content h3 {
-  margin: 0 0 10px;
+  margin: 0 0 12px;
 
   color: #ffffff;
 
-  font-size: 28px;
+  font-size: 32px;
   line-height: 1;
   font-weight: 500;
 
@@ -227,12 +227,12 @@
 }
 
 .process-card-content p {
-  max-width: 220px;
+  max-width: 240px;
   margin: 0;
 
-  color: rgba(244, 247, 241, 0.42);
+  color: rgba(244, 247, 241, 0.5);
 
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.7;
 
   transition: color 0.3s ease;
@@ -245,10 +245,10 @@
 .process-connector {
   position: absolute;
 
-  top: 24px;
-  right: -30px;
+  top: 27px;
+  right: -34px;
 
-  width: 60px;
+  width: 68px;
   height: 1px;
 
   background: rgba(255, 255, 255, 0.08);
@@ -262,7 +262,7 @@
   top: 0;
   left: 0;
 
-  width: 22px;
+  width: 24px;
   height: 1px;
 
   background: #79c889;
@@ -290,51 +290,12 @@
 }
 
 .process-card:hover .process-card-content p {
-  color: rgba(244, 247, 241, 0.62);
+  color: rgba(244, 247, 241, 0.72);
 }
 
 .process-card:hover .process-card-arrow {
   color: #82ca8e;
   transform: translate(3px, -3px);
-}
-
-/* =========================================================
-   BOTTOM
-========================================================= */
-
-.process-bottom {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-
-  margin-top: 42px;
-  padding-top: 20px;
-
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.process-bottom span {
-  color: #82ca8e;
-
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 2px;
-}
-
-.process-bottom div {
-  width: 45px;
-  height: 1px;
-
-  background: rgba(130, 202, 142, 0.4);
-}
-
-.process-bottom p {
-  margin: 0;
-
-  color: rgba(255, 255, 255, 0.32);
-
-  font-size: 11px;
-  letter-spacing: 0.3px;
 }
 
 /* =========================================================
@@ -352,13 +313,13 @@
   }
 
   .process-heading p {
-    width: 280px;
-    font-size: 13px;
+    width: 300px;
+    font-size: 15px;
   }
 
   .process-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 45px 0;
+    gap: 50px 0;
   }
 
   .process-card:nth-child(3) {
@@ -383,16 +344,16 @@
 @media (max-width: 650px) {
 
   .process-section {
-    padding: 65px 6% 50px;
+    padding: 65px 6% 40px;
   }
 
   .process-header {
-    padding-bottom: 32px;
+    padding-bottom: 34px;
   }
 
   .process-label {
-    margin-bottom: 18px;
-    font-size: 9px;
+    margin-bottom: 20px;
+    font-size: 12px;
     letter-spacing: 2.5px;
   }
 
@@ -407,10 +368,10 @@
 
   .process-heading p {
     width: 100%;
-    max-width: 330px;
+    max-width: 360px;
     margin-top: 22px;
 
-    font-size: 13px;
+    font-size: 15px;
     line-height: 1.7;
   }
 
@@ -418,7 +379,7 @@
     grid-template-columns: 1fr;
     gap: 0;
 
-    margin-top: 32px;
+    margin-top: 34px;
   }
 
   .process-card,
@@ -441,24 +402,21 @@
   }
 
   .process-card-top {
-    margin-bottom: 24px;
+    margin-bottom: 26px;
   }
 
   .process-number {
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
+    font-size: 12px;
   }
 
   .process-card-content h3 {
-    font-size: 26px;
+    font-size: 28px;
   }
 
   .process-card-content p {
-    max-width: 310px;
-    font-size: 13px;
-  }
-
-  .process-bottom {
-    margin-top: 32px;
+    max-width: 330px;
+    font-size: 15px;
   }
 }

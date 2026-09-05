@@ -4,12 +4,13 @@ import './Categories.css'
 const CATS = [
   {
     name: 'Fertilizers',
-    tag: 'Bags & bulk packs',
     accent: '#b5e047',
-    img1: 'https://images.unsplash.com/photo-1592982537447-7440770cbfc9?w=600&q=80',
-    img2: 'https://images.unsplash.com/photo-1615811361523-6bd03d7748e7?w=600&q=80',
-    modalImg: 'https://images.unsplash.com/photo-1592982537447-7440770cbfc9?w=900&q=85',
-    desc: 'Industrial sacks, FIBC jumbo bags and retail pouches built for weight tolerance, moisture-barrier performance, and shelf impact on crowded agrodealer shelves.',
+    // img1: fertilizer spreader machine on crop field (James Baltz, Unsplash)
+    // img2: close-up white fertilizer granules (Kenneth Berrios Alvarez, Unsplash)
+    img1: 'https://ifoda.uz/storage/01KJC5ZZ8FRMEZHZQ6RG62CYST.png',
+    img2: 'https://martiran.com/wp-content/uploads/2025/03/03-3.jpg',
+    modalImg: 'https://martiran.com/wp-content/uploads/2025/03/03-3.jpg',
+    desc: 'Industrial sacks, FIBC jumbo bags and retail pouches built for weight tolerance, moisture barrier performance, and shelf impact on crowded agrodealer shelves.',
     bullets: [
       '50 kg woven PP sacks with UV-stabilised print',
       'Jumbo FIBC bulk bags with food-grade liners',
@@ -19,12 +20,13 @@ const CATS = [
   },
   {
     name: 'Seeds',
-    tag: 'Pouches & sachets',
     accent: '#7ecb6f',
-    img1: 'https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8?w=600&q=80',
-    img2: 'https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?w=600&q=80',
-    modalImg: 'https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8?w=900&q=85',
-    desc: 'Foil-sealed seed pouches and sachets with varietal-specific design systems — packaged to communicate purity, germination rate, and brand trust at a glance.',
+    // img1: green shovel with soil — seed sowing context (Neslihan Gunaydin, Unsplash)
+    // img2: woman holding soil/compost in hands — seed planting (EqualStock, Unsplash)
+    img1: 'https://www.campojalon.es/wp-content/uploads/2022/05/blog1.jpg',
+    img2: 'https://image.made-in-china.com/2f0j00LQMougnylSbO/Electric-Grain-Seeds-Impurities-Vibrating-Screen-Machine.webp',
+    modalImg: 'https://www.campojalon.es/wp-content/uploads/2022/05/blog1.jpg',
+    desc: 'Foil-sealed seed pouches and sachets with varietal-specific design systems packaged to communicate purity, germination rate, and brand trust at a glance.',
     bullets: [
       'Foil & kraft laminate pouches in 50 g – 5 kg',
       'Varietal colour-code systems across crops',
@@ -34,11 +36,12 @@ const CATS = [
   },
   {
     name: 'Pesticides',
-    tag: 'Bottles & cans',
     accent: '#f5c842',
-    img1: 'https://images.unsplash.com/photo-1615671524827-c1fe3973b648?w=600&q=80',
-    img2: 'https://images.unsplash.com/photo-1592841200221-a6898f307baa?w=600&q=80',
-    modalImg: 'https://images.unsplash.com/photo-1615671524827-c1fe3973b648?w=900&q=85',
+    // img1: tractor spraying field — fertilizer/pesticide application (James Baltz, Unsplash)
+    // img2: fertilizer spreader on corn field — field chemical application (James Baltz, Unsplash)
+    img1: 'https://images.pexels.com/photos/29282018/pexels-photo-29282018.jpeg',
+    img2: 'https://images.pexels.com/photos/14944259/pexels-photo-14944259.jpeg',
+    modalImg: 'https://images.pexels.com/photos/14944259/pexels-photo-14944259.jpeg',
     desc: 'HDPE bottles, jerry-cans and trigger-spray assemblies with hazard-compliant label systems engineered to survive field conditions while meeting all GHS pictogram requirements.',
     bullets: [
       '100 ml – 20 L HDPE & PET bottle forms',
@@ -49,12 +52,13 @@ const CATS = [
   },
   {
     name: 'Biostimulants',
-    tag: 'Cartons & bottles',
     accent: '#5bbf8e',
-    img1: 'https://images.unsplash.com/photo-1509587584298-0f3b3a3a1797?w=600&q=80',
-    img2: 'https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?w=600&q=80',
-    modalImg: 'https://images.unsplash.com/photo-1509587584298-0f3b3a3a1797?w=900&q=85',
-    desc: 'Premium carton and bottle packaging that signals science and sustainability for the fast-growing bio-input market — designed to earn shelf space in modern agri-retail.',
+    // img1: green grass field lush growth — biostimulant result (Ben Wicks, Unsplash)
+    // img2: gardening gloves working in soil — organic plant care (Hasan Hasanzadeh, Unsplash)
+    img1: 'https://static.wixstatic.com/media/f25be8_0fd4a3476c02487e8d95ad60adf6a653~mv2.png/v1/fill/w_500,h_500,al_c,q_85,enc_avif,quality_auto/6.png',
+    img2: 'https://www.hechenbichler.com/img/containers/assets/news/2025_06_landwirt_biostimulanzien_als_nat%C3%BCrliche_helfer/2025-06-News-Landwirt_Biostimulanzien-als-naturliche-Helfer_Wurzelbiomasse.png/4682de8450b3c00dd4e9be381ccc5cb8.png',
+    modalImg: 'https://www.hechenbichler.com/img/containers/assets/news/2025_06_landwirt_biostimulanzien_als_nat%C3%BCrliche_helfer/2025-06-News-Landwirt_Biostimulanzien-als-naturliche-Helfer_Wurzelbiomasse.png/4682de8450b3c00dd4e9be381ccc5cb8.png',
+    desc: 'Premium carton and bottle packaging that signals science and sustainability for the fast-growing bio-input market designed to earn shelf space in modern agri-retail.',
     bullets: [
       'Premium folding carton with soft-touch laminate',
       'Amber glass & HDPE bottles for liquid formats',
@@ -64,11 +68,12 @@ const CATS = [
   },
   {
     name: 'Fungicides',
-    tag: 'Cans & sachets',
     accent: '#e07b54',
-    img1: 'https://images.unsplash.com/photo-1654741275609-d7861db288c2?w=600&q=80',
-    img2: 'https://images.unsplash.com/photo-1720199197516-c6d2191ac915?w=600&q=80',
-    modalImg: 'https://images.unsplash.com/photo-1654741275609-d7861db288c2?w=900&q=85',
+    // img1: diseased/fallen leaf on ground — fungal decay visible (Sean Foster, Unsplash)
+    // img2: brown tractor on grass — field treatment scene (Etienne Girardet, Unsplash)
+    img1: 'https://commons.wikimedia.org/wiki/Special:FilePath/Mango_powdery_mildew_severe_leaf_blight_with_mycelium_1.jpg',
+    img2: 'https://commons.wikimedia.org/wiki/Special:FilePath/Powdery_Mildew_in_Soyabean_leaves.jpg',
+    modalImg: 'https://commons.wikimedia.org/wiki/Special:FilePath/Powdery_Mildew_in_Soyabean_leaves.jpg',
     desc: 'Tin cans and WDG sachet packs with structured label hierarchies that survive field handling, pass regulatory scrutiny, and build brand recall across crop-protection portfolios.',
     bullets: [
       '300 g – 1 kg tin cans with full wrap labels',
@@ -122,7 +127,7 @@ function Modal({ cat, onClose }) {
         <div className="cat-modal__media">
           <img src={cat.modalImg} alt={cat.name} className="cat-modal__img" />
           <div className="cat-modal__media-fade" aria-hidden="true" />
-          <span className="cat-modal__badge">{cat.tag}</span>
+          <span className="cat-modal__badge">{cat.name}</span>
         </div>
 
         <div className="cat-modal__body">
@@ -158,7 +163,7 @@ export default function Categories({ onCategoryClick }) {
         <p className="categories__eyebrow">Our expertise</p>
         <h2 className="categories__title">What we package</h2>
         <p className="categories__sub">
-          Pick a category to explore our approach — or start a brief directly.
+          Pick a category to explore our approach or start a brief directly.
         </p>
       </div>
 
@@ -182,7 +187,6 @@ export default function Categories({ onCategoryClick }) {
             <div className="cat-card__shade" />
             <div className="cat-card__accent-bar" />
             <div className="cat-card__body">
-              <span className="cat-card__tag">{cat.tag}</span>
               <span className="cat-card__name">{cat.name}</span>
               <p className={`cat-card__desc${hovered === cat.name ? ' is-visible' : ''}`}>
                 {cat.desc.split('.')[0]}.
