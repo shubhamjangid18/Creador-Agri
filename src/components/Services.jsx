@@ -1,3 +1,10 @@
+import { useRef } from 'react'
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useReducedMotion,
+} from 'framer-motion'
 import './Services.css'
 
 const services = [
@@ -33,52 +40,102 @@ const services = [
   },
 ]
 
+/* ---------- Single stacked card ---------- */
+
+function ServiceCard({ service, index, total, progress }) {
+  const reduceMotion = useReducedMotion()
+
+  // Jitna piche ka card, utna zyada chhota hoga
+  const targetScale = reduceMotion ? 1 : 1 - (total - 1 - index) * 0.045
+  const targetBrightness = reduceMotion ? 1 : 0.55
+  const range = [index / total, 1]
+
+  const scale = useTransform(progress, range, [1, targetScale])
+  const brightness = useTransform(progress, range, [1, targetBrightness])
+  const filter = useTransform(brightness, (v) => `brightness(${v})`)
+
+  return (
+    <div className="service-wrap" style={{ '--i': index }}>
+      <motion.article className="service" style={{ scale, filter }}>
+        <div className="service__number">{service.number}</div>
+
+        <div className="service__content">
+          <h3>{service.title}</h3>
+          <p>{service.description}</p>
+        </div>
+
+        <div className="service__arrow">
+          <span>↗</span>
+        </div>
+      </motion.article>
+    </div>
+  )
+}
+
+/* ---------- Section ---------- */
+
 export default function Services() {
+  const listRef = useRef(null)
+
+  const { scrollYProgress } = useScroll({
+    target: listRef,
+    offset: ['start start', 'end end'],
+  })
+
   return (
     <section className="services" id="services">
       <div className="services__container">
-
         {/* Header */}
         <div className="services__header">
-          <div className="services__eyebrow">
-            <span></span>
+          <motion.div
+            className="services__eyebrow"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.6 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+          >
+            <motion.span
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
+              style={{ originX: 0 }}
+            />
             OUR SERVICES
-          </div>
+          </motion.div>
 
-          <h2>
+          <motion.h2
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          >
             What We <em>Design</em> For You
-          </h2>
+          </motion.h2>
 
-          <p>
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.6 }}
+            transition={{ duration: 0.8, delay: 0.15, ease: 'easeOut' }}
+          >
             Strategic design and premium visuals created specifically
             for modern agriculture brands.
-          </p>
+          </motion.p>
         </div>
 
-        {/* Services */}
-        <div className="services__list">
-          {services.map((service) => (
-            <article
-              className="service"
+        {/* Stacked cards */}
+        <div className="services__list" ref={listRef}>
+          {services.map((service, i) => (
+            <ServiceCard
               key={service.number}
-            >
-              <div className="service__number">
-                {service.number}
-              </div>
-
-              <div className="service__content">
-                <h3>{service.title}</h3>
-
-                <p>{service.description}</p>
-              </div>
-
-              <div className="service__arrow">
-                <span>↗</span>
-              </div>
-            </article>
+              service={service}
+              index={i}
+              total={services.length}
+              progress={scrollYProgress}
+            />
           ))}
         </div>
-
       </div>
     </section>
   )

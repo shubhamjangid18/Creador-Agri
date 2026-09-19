@@ -1,6 +1,18 @@
-import { useEffect, useState, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState, useCallback, useRef } from "react";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+  useReducedMotion,
+} from "framer-motion";
 import "./Testimonials.css";
+
+/* Background photo.
+   Farmer wali apni photo lagani ho to:
+   public/farmer-bg.jpg mein rakho aur yahan "/farmer-bg.jpg" likh do. */
+const BG_IMAGE =
+  "https://images.pexels.com/photos/29282018/pexels-photo-29282018.jpeg?auto=compress&cs=tinysrgb&w=1920";
 
 const TESTIMONIALS = [
   {
@@ -63,6 +75,16 @@ export default function Testimonials() {
   const [paused,  setPaused]  = useState(false);
   const [progKey, setProgKey] = useState(0);
 
+  const reduceMotion = useReducedMotion();
+  const sectionRef = useRef(null);
+
+  // Halka parallax
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  const bgY = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
+
   const goTo = useCallback((next, d) => {
     setDir(d); setPage(next); setProgKey(k => k + 1);
   }, []);
@@ -80,21 +102,35 @@ export default function Testimonials() {
 
   return (
     <section
+      ref={sectionRef}
       className="ts-section"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="ts-bg-glow" aria-hidden="true" />
+      {/* Background photo */}
+      <div className="ts-bg" aria-hidden="true">
+        <motion.img
+          src={BG_IMAGE}
+          alt=""
+          className="ts-bg__img"
+          style={{ y: reduceMotion ? 0 : bgY }}
+          decoding="async"
+          onError={() =>
+            console.warn("Testimonials: background image load nahi hui ->", BG_IMAGE)
+          }
+        />
+        <div className="ts-bg__overlay" />
+      </div>
 
       <div className="ts-wrap">
 
         {/* Header */}
         <motion.div
           className="ts-head"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.55 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="ts-eyebrow">
             <span className="ts-eyebrow__line" />
@@ -142,8 +178,6 @@ export default function Testimonials() {
                       <span>{t.role} · {t.company}</span>
                     </div>
                   </div>
-
-                  <div className="ts-card__bar" />
                 </div>
               ))}
             </motion.div>

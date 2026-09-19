@@ -2,7 +2,6 @@
   --forest-dark: #0b2a12;
   --forest-deeper: #061a09;
 
-  /* Premium Green Palette */
   --green-primary: #2f7d46;
   --green-main: #3f9858;
   --green-light: #7dcc91;
@@ -14,12 +13,7 @@
   --container: 1300px;
 
   --font-display: Georgia, "Times New Roman", serif;
-
-  --font-sans:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 
@@ -30,17 +24,12 @@
 .hero {
   position: relative;
   min-height: 100vh;
-
   display: flex;
   flex-direction: column;
-
   overflow: hidden;
-
   background: var(--forest-deeper);
   color: var(--cream-card);
-
   font-family: var(--font-sans);
-
   padding-top: 96px;
 }
 
@@ -52,41 +41,25 @@
 .hero__bg {
   position: absolute;
   inset: 0;
-
   z-index: 0;
-
   overflow: hidden;
 }
-
 
 .hero__bg-img {
   position: absolute;
   inset: 0;
-
   width: 100%;
   height: 100%;
-
   object-fit: cover;
-
   opacity: 0;
-
   transform: scale(1.06);
-
-  filter:
-    brightness(1)
-    contrast(1.05)
-    saturate(1.12);
-
-  transition:
-    opacity 1.4s ease,
-    transform 7s ease;
+  filter: brightness(1) contrast(1.05) saturate(1.12);
+  transition: opacity 1.4s ease, transform 7s ease;
 }
-
 
 .hero__bg-img.is-active {
   opacity: 1;
   transform: scale(1);
-
   z-index: 1;
 }
 
@@ -98,37 +71,27 @@
 .hero__duotone {
   position: absolute;
   inset: 0;
-
   z-index: 1;
-
   pointer-events: none;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(5, 40, 14, 0.22),
-      rgba(32, 110, 50, 0.1),
-      rgba(4, 25, 10, 0.2)
-    );
-
+  background: linear-gradient(
+    135deg,
+    rgba(5, 40, 14, 0.22),
+    rgba(32, 110, 50, 0.1),
+    rgba(4, 25, 10, 0.2)
+  );
   mix-blend-mode: multiply;
 }
 
 
 /* =========================================================
    MAIN OVERLAY
-   LEFT SIDE DARK FOR TEXT
-   RIGHT SIDE IMAGE CLEAR
 ========================================================= */
 
 .hero__overlay {
   position: absolute;
   inset: 0;
-
   z-index: 2;
-
   pointer-events: none;
-
   background:
     linear-gradient(
       90deg,
@@ -138,11 +101,7 @@
       rgba(3, 14, 6, 0.08) 78%,
       rgba(3, 14, 6, 0.03) 100%
     ),
-    linear-gradient(
-      to top,
-      rgba(3, 14, 6, 0.38),
-      transparent 42%
-    );
+    linear-gradient(to top, rgba(3, 14, 6, 0.38), transparent 42%);
 }
 
 
@@ -153,13 +112,9 @@
 .hero__vignette {
   position: absolute;
   inset: 0;
-
   z-index: 3;
-
   pointer-events: none;
-
-  box-shadow:
-    inset 0 0 100px rgba(0, 0, 0, 0.32);
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.32);
 }
 
 
@@ -170,15 +125,10 @@
 .hero__grain {
   position: absolute;
   inset: 0;
-
   z-index: 4;
-
   pointer-events: none;
-
   opacity: 0.018;
-
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
 }
 
 
@@ -188,94 +138,66 @@
 
 .hero__body {
   position: relative;
-
   z-index: 5;
-
   flex: 1;
-
   width: 100%;
-
   max-width: var(--container);
-
   margin: 0 auto;
-
   display: flex;
-
   align-items: center;
-
   padding: 0 6vw 8rem;
 }
 
 
 /* =========================================================
-   CONTENT
+   CONTENT WRAPPER
 ========================================================= */
 
 .hero__copy {
   max-width: 730px;
-
   padding-left: 160px;
-
-  animation: heroReveal 0.9s ease forwards;
-}
-
-
-@keyframes heroReveal {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 
 /* =========================================================
-   GREEN RULE
+   GREEN RULE  —  expands from left
 ========================================================= */
 
 .hero__rule {
   width: 54px;
   height: 3px;
-
   border-radius: 20px;
-
   margin-bottom: 1.2rem;
+  background: linear-gradient(90deg, var(--green-bright), var(--green-primary));
+  box-shadow: 0 0 16px rgba(125, 204, 145, 0.5);
 
-  background:
-    linear-gradient(
-      90deg,
-      var(--green-bright),
-      var(--green-primary)
-    );
+  /* motion */
+  animation: ruleExpand 0.7s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation-delay: 0.1s;
+}
 
-  box-shadow:
-    0 0 16px rgba(125, 204, 145, 0.5);
+@keyframes ruleExpand {
+  from { width: 0; opacity: 0; }
+  to   { width: 54px; opacity: 1; }
 }
 
 
 /* =========================================================
-   EYEBROW
+   EYEBROW  —  fade + slide up
 ========================================================= */
 
 .hero__eyebrow {
   margin-bottom: 1.5rem;
-
   color: var(--green-bright);
-
   font-size: 1rem;
-
   font-weight: 700;
-
   letter-spacing: 0.16em;
-
   text-transform: uppercase;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
 
-  text-shadow:
-    0 2px 10px rgba(0, 0, 0, 0.4);
+  /* motion */
+  animation: textRise 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation-delay: 0.25s;
 }
 
 
@@ -285,108 +207,97 @@
 
 .hero__headline {
   margin: 0 0 1.8rem;
-
   font-family: var(--font-display);
-
-  font-size:
-    clamp(3rem, 5.5vw, 5.2rem);
-
+  font-size: clamp(3rem, 5.5vw, 5.2rem);
   font-weight: 400;
-
   line-height: 1.05;
-
   letter-spacing: -0.025em;
-
   color: var(--cream-card);
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.52);
 
-  text-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.52);
+  /* reset wrapper animation — children animate individually */
+  display: block;
 }
 
-
-/* =========================================================
-   PREMIUM GREEN SELECTED HEADLINE
-========================================================= */
-
-.hero__headline span {
+/* LINE 1 — cream text, slides up */
+.hero__headline-line1 {
   display: block;
+  animation: textRise 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation-delay: 0.38s;
+}
 
-  /*
-   * Premium natural green gradient
-   * Only the text inside <span> becomes green.
-   */
-  background:
-    linear-gradient(
-      105deg,
-      #c4f0ce 0%,
-      #a7e3b5 22%,
-      #7dcc91 52%,
-      #4fa96a 78%,
-      #3f9858 100%
-    );
-
+/* LINE 2 — green gradient text, slides up slightly later */
+.hero__headline-line2 {
+  display: block;
+  background: linear-gradient(
+    105deg,
+    #c4f0ce 0%,
+    #a7e3b5 22%,
+    #7dcc91 52%,
+    #4fa96a 78%,
+    #3f9858 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
-
   -webkit-text-fill-color: transparent;
-
   color: transparent;
-
-  /*
-   * Very subtle premium glow.
-   * Avoids the cheap neon effect.
-   */
-  filter:
-    drop-shadow(
-      0 4px 16px rgba(86, 170, 105, 0.18)
-    );
-
-  /*
-   * Slightly tighter typography
-   * for a luxury editorial look.
-   */
+  filter: drop-shadow(0 4px 16px rgba(86, 170, 105, 0.18));
   letter-spacing: -0.035em;
-
-  /*
-   * Keeps the green text visually integrated
-   * with the background.
-   */
   text-shadow: none;
+
+  /* motion */
+  animation: textRise 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation-delay: 0.52s;
 }
 
 
 /* =========================================================
-   SUBHEADING
+   SUBHEADING  —  fade + slide up
 ========================================================= */
 
 .hero__sub {
   max-width: 58ch;
-
   margin: 0 0 2.4rem;
-
   font-size: 1.22rem;
-
   line-height: 1.8;
-
   color: var(--cream-dim);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.45);
 
-  text-shadow:
-    0 2px 12px rgba(0, 0, 0, 0.45);
+  /* motion */
+  animation: textRise 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation-delay: 0.68s;
 }
 
 
 /* =========================================================
-   ACTIONS
+   ACTIONS  —  fade + slide up
 ========================================================= */
 
 .hero__actions {
   display: flex;
-
   align-items: center;
-
   gap: 1rem;
-
   flex-wrap: wrap;
+
+  /* motion */
+  animation: textRise 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation-delay: 0.84s;
+}
+
+
+/* =========================================================
+   SHARED ENTRANCE KEYFRAME
+========================================================= */
+
+@keyframes textRise {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 
@@ -396,142 +307,60 @@
 
 .hero__primary-btn {
   display: inline-flex !important;
-
   align-items: center !important;
-
   justify-content: center !important;
-
   gap: 0.75rem;
-
   padding: 1rem 1.9rem !important;
-
-  border:
-    1px solid rgba(167, 227, 181, 0.25) !important;
-
+  border: 1px solid rgba(167, 227, 181, 0.25) !important;
   border-radius: 999px !important;
-
   cursor: pointer;
-
-  background:
-    linear-gradient(
-      135deg,
-      #4fa96a 0%,
-      #3b9255 45%,
-      #276f3f 100%
-    ) !important;
-
+  background: linear-gradient(135deg, #4fa96a 0%, #3b9255 45%, #276f3f 100%) !important;
   color: #ffffff !important;
-
   font-family: var(--font-sans) !important;
-
   font-size: 0.92rem !important;
-
   font-weight: 700 !important;
-
   letter-spacing: 0.01em;
-
-  box-shadow:
-    0 12px 30px rgba(20, 100, 45, 0.45),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
-
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
-    filter 0.3s ease;
-
+  box-shadow: 0 12px 30px rgba(20, 100, 45, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
   position: relative;
-
   overflow: hidden;
 }
 
-
-/* =========================================================
-   PREMIUM BUTTON SHINE
-========================================================= */
-
 .hero__primary-btn::before {
   content: "";
-
   position: absolute;
-
   top: 0;
   left: -120%;
-
   width: 70%;
   height: 100%;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.16),
-      transparent
-    );
-
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.16), transparent);
   transform: skewX(-20deg);
-
   transition: left 0.6s ease;
 }
 
-
-.hero__primary-btn:hover::before {
-  left: 140%;
-}
-
-
-/* =========================================================
-   BUTTON HOVER
-========================================================= */
+.hero__primary-btn:hover::before { left: 140%; }
 
 .hero__primary-btn:hover {
   transform: translateY(-3px);
-
   filter: brightness(1.08);
-
-  box-shadow:
-    0 20px 45px rgba(20, 100, 45, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  box-shadow: 0 20px 45px rgba(20, 100, 45, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
-
-/* =========================================================
-   BUTTON ACTIVE
-========================================================= */
-
-.hero__primary-btn:active {
-  transform: translateY(-1px);
-}
-
-
-/* =========================================================
-   BUTTON TEXT
-========================================================= */
+.hero__primary-btn:active { transform: translateY(-1px); }
 
 .hero__primary-btn span {
   position: relative;
-
   z-index: 1;
 }
-
-
-/* =========================================================
-   BUTTON SVG
-========================================================= */
 
 .hero__primary-btn svg {
   position: relative;
-
   z-index: 1;
-
   color: #ffffff;
-
   transition: transform 0.3s ease;
 }
 
-
-.hero__primary-btn:hover svg {
-  transform: translate(3px, -3px);
-}
+.hero__primary-btn:hover svg { transform: translate(3px, -3px); }
 
 
 /* =========================================================
@@ -540,30 +369,19 @@
 
 .hero__slidefoot {
   position: absolute;
-
   z-index: 6;
-
   left: 6vw;
   right: 6vw;
-
   bottom: 2.5rem;
-
   display: flex;
-
   justify-content: space-between;
-
   align-items: center;
 }
 
-
 .hero__caption {
   font-size: 0.8rem;
-
-  color:
-    rgba(255, 255, 255, 0.78);
-
-  text-shadow:
-    0 2px 10px rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.78);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 
@@ -573,45 +391,26 @@
 
 .hero__indicators {
   display: flex;
-
   gap: 0.5rem;
 }
-
 
 .hero__indicator {
   width: 24px;
   height: 3px;
-
   padding: 0;
-
   border: none;
-
   border-radius: 20px;
-
   cursor: pointer;
-
-  background:
-    rgba(255, 255, 255, 0.45);
-
-  transition:
-    all 0.3s ease;
+  background: rgba(255, 255, 255, 0.45);
+  transition: all 0.3s ease;
 }
 
-
-.hero__indicator:hover {
-  background:
-    rgba(167, 227, 181, 0.8);
-}
-
+.hero__indicator:hover { background: rgba(167, 227, 181, 0.8); }
 
 .hero__indicator--active {
   width: 42px;
-
-  background:
-    var(--green-bright);
-
-  box-shadow:
-    0 0 12px rgba(125, 204, 145, 0.7);
+  background: var(--green-bright);
+  box-shadow: 0 0 12px rgba(125, 204, 145, 0.7);
 }
 
 
@@ -620,23 +419,9 @@
 ========================================================= */
 
 @media (max-width: 980px) {
-
-  .hero__headline {
-    font-size:
-      clamp(2.7rem, 7vw, 4.2rem);
-  }
-
-
-  .hero__sub {
-    font-size: 1.1rem;
-  }
-
-
-  .hero__copy {
-    padding-left: 120px;
-  }
-
-
+  .hero__headline { font-size: clamp(2.7rem, 7vw, 4.2rem); }
+  .hero__sub { font-size: 1.1rem; }
+  .hero__copy { padding-left: 120px; }
   .hero__overlay {
     background:
       linear-gradient(
@@ -645,11 +430,7 @@
         rgba(3, 14, 6, 0.58) 55%,
         rgba(3, 14, 6, 0.22) 100%
       ),
-      linear-gradient(
-        to top,
-        rgba(3, 14, 6, 0.45),
-        transparent 45%
-      );
+      linear-gradient(to top, rgba(3, 14, 6, 0.45), transparent 45%);
   }
 }
 
@@ -659,81 +440,30 @@
 ========================================================= */
 
 @media (max-width: 640px) {
-
-  .hero {
-    padding-top: 80px;
-
-    min-height: 100svh;
-  }
-
-
-  .hero__body {
-    padding:
-      0 6vw 5rem;
-  }
-
-
-  .hero__copy {
-    padding-left: 0;
-  }
-
-
-  .hero__eyebrow {
-    font-size: 0.85rem;
-  }
-
-
-  .hero__sub {
-    font-size: 1rem;
-  }
-
-
+  .hero { padding-top: 80px; min-height: 100svh; }
+  .hero__body { padding: 0 6vw 5rem; }
+  .hero__copy { padding-left: 0; }
+  .hero__eyebrow { font-size: 0.85rem; }
+  .hero__sub { font-size: 1rem; }
   .hero__overlay {
-    background:
-      linear-gradient(
-        180deg,
-        rgba(3, 14, 6, 0.52) 0%,
-        rgba(3, 14, 6, 0.75) 70%,
-        rgba(3, 14, 6, 0.88) 100%
-      );
+    background: linear-gradient(
+      180deg,
+      rgba(3, 14, 6, 0.52) 0%,
+      rgba(3, 14, 6, 0.75) 70%,
+      rgba(3, 14, 6, 0.88) 100%
+    );
   }
-
-
-  .hero__headline {
-    font-size:
-      clamp(2.5rem, 11vw, 3.8rem);
+  .hero__headline { font-size: clamp(2.5rem, 11vw, 3.8rem); }
+  .hero__headline-line2 {
+    filter: drop-shadow(0 3px 10px rgba(86, 170, 105, 0.14));
   }
-
-
-  .hero__headline span {
-    /*
-     * Slightly softer glow on mobile
-     * for cleaner readability.
-     */
-    filter:
-      drop-shadow(
-        0 3px 10px rgba(86, 170, 105, 0.14)
-      );
-  }
-
-
   .hero__actions {
     flex-direction: column;
-
     align-items: stretch;
-
     width: 100%;
   }
-
-
-  .hero__primary-btn {
-    width: 100%;
-  }
-
-
-  .hero__slidefoot {
-    display: none;
-  }
+  .hero__primary-btn { width: 100%; }
+  .hero__slidefoot { display: none; }
 }
 
 
@@ -742,14 +472,16 @@
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
-
-  .hero__copy,
+  .hero__rule,
+  .hero__eyebrow,
+  .hero__headline-line1,
+  .hero__headline-line2,
+  .hero__sub,
+  .hero__actions,
   .hero__bg-img,
   .hero__primary-btn,
   .hero__indicator {
-
     animation: none !important;
-
     transition: none !important;
   }
 }

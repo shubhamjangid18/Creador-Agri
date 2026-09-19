@@ -1,4 +1,11 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
+import {
+  motion,
+  useMotionValue,
+  useMotionTemplate,
+  useSpring,
+  useReducedMotion,
+} from 'framer-motion'
 import './Categories.css'
 
 const CATS = [
@@ -8,8 +15,8 @@ const CATS = [
     // img1: fertilizer spreader machine on crop field (James Baltz, Unsplash)
     // img2: close-up white fertilizer granules (Kenneth Berrios Alvarez, Unsplash)
     img1: 'https://ifoda.uz/storage/01KJC5ZZ8FRMEZHZQ6RG62CYST.png',
-    img2: 'https://martiran.com/wp-content/uploads/2025/03/03-3.jpg',
-    modalImg: 'https://martiran.com/wp-content/uploads/2025/03/03-3.jpg',
+    img2: 'https://unsplash.com/photos/RZMlzrsjFU4/download?w=800',
+    modalImg: 'https://unsplash.com/photos/RZMlzrsjFU4',
     desc: 'Industrial sacks, FIBC jumbo bags and retail pouches built for weight tolerance, moisture barrier performance, and shelf impact on crowded agrodealer shelves.',
     bullets: [
       '50 kg woven PP sacks with UV-stabilised print',
@@ -84,6 +91,10 @@ const CATS = [
   },
 ]
 
+const EASE = [0.22, 1, 0.36, 1]
+
+/* ---------- Modal ---------- */
+
 function Modal({ cat, onClose }) {
   const closeBtnRef = useRef(null)
 
@@ -146,9 +157,130 @@ function Modal({ cat, onClose }) {
   )
 }
 
+/* ---------- Single card (tilt + cursor spotlight) ---------- */
+
+function CatCard({ cat, index, wide, onOpen, reduceMotion }) {
+  const ref = useRef(null)
+  const [hover, setHover] = useState(false)
+
+  // cursor position inside card
+  const mx = useMotionValue(0)
+  const my = useMotionValue(0)
+
+  // tilt
+  const rotX = useMotionValue(0)
+  const rotY = useMotionValue(0)
+  const rotateX = useSpring(rotX, { stiffness: 160, damping: 18, mass: 0.4 })
+  const rotateY = useSpring(rotY, { stiffness: 160, damping: 18, mass: 0.4 })
+
+  const spotlight = useMotionTemplate`radial-gradient(420px circle at ${mx}px ${my}px, color-mix(in srgb, var(--ac) 26%, transparent), transparent 70%)`
+
+  function handleMove(e) {
+    if (reduceMotion || !ref.current) return
+    const r = ref.current.getBoundingClientRect()
+    const px = e.clientX - r.left
+    const py = e.clientY - r.top
+    mx.set(px)
+    my.set(py)
+    rotY.set((px / r.width - 0.5) * 8)
+    rotX.set(-(py / r.height - 0.5) * 8)
+  }
+
+  function handleEnter() {
+    setHover(true)
+  }
+
+  function handleLeave() {
+    setHover(false)
+    rotX.set(0)
+    rotY.set(0)
+  }
+
+  return (
+    <motion.button
+      ref={ref}
+      className={`cat-card${wide ? ' cat-card--wide' : ''}${hover ? ' is-hover' : ''}`}
+      style={{
+        '--ac': cat.accent,
+        rotateX: reduceMotion ? 0 : rotateX,
+        rotateY: reduceMotion ? 0 : rotateY,
+        transformPerspective: 1000,
+      }}
+      onMouseEnter={handleEnter}
+      onMouseMove={handleMove}
+      onMouseLeave={handleLeave}
+      onFocus={handleEnter}
+      onBlur={handleLeave}
+      onClick={() => onOpen(cat)}
+      aria-label={`Open ${cat.name} packaging details`}
+      initial={reduceMotion ? false : { opacity: 0, y: 70 }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.9, delay: index * 0.1, ease: EASE },
+      }}
+      whileHover={
+        reduceMotion
+          ? undefined
+          : { y: -6, transition: { type: 'spring', stiffness: 300, damping: 24 } }
+      }
+      viewport={{ once: true, amount: 0.15 }}
+    >
+      <div className="cat-card__imgs">
+        <img
+          src={cat.img1}
+          alt={`${cat.name} packaging`}
+          className="cat-card__img cat-card__img--base"
+          loading="lazy"
+        />
+        <img
+          src={cat.img2}
+          alt=""
+          aria-hidden="true"
+          className="cat-card__img cat-card__img--hover"
+          loading="lazy"
+        />
+      </div>
+
+      <div className="cat-card__shade" />
+      <motion.div className="cat-card__spot" style={{ background: spotlight }} />
+
+      <div className="cat-card__top">
+        <span className="cat-card__index">
+          {String(index + 1).padStart(2, '0')}
+        </span>
+
+        <span className="cat-card__arrow" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M7 17L17 7M9 7h8v8"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </span>
+      </div>
+
+      <div className="cat-card__body">
+        <span className="cat-card__line" />
+        <span className="cat-card__name">{cat.name}</span>
+        <p className="cat-card__desc">{cat.desc.split('.')[0]}.</p>
+        <span className="cat-card__cta">
+          Explore
+          <i />
+        </span>
+      </div>
+    </motion.button>
+  )
+}
+
+/* ---------- Section ---------- */
+
 export default function Categories({ onCategoryClick }) {
-  const [hovered, setHovered] = useState(null)
   const [active, setActive] = useState(null)
+  const reduceMotion = useReducedMotion()
 
   const handleClick = useCallback((cat) => {
     onCategoryClick?.(cat.name)
@@ -159,41 +291,45 @@ export default function Categories({ onCategoryClick }) {
     <section className="categories" id="categories">
       <Modal cat={active} onClose={() => setActive(null)} />
 
-      <div className="categories__head">
-        <p className="categories__eyebrow">Our expertise</p>
-        <h2 className="categories__title">What we package</h2>
-        <p className="categories__sub">
-          Pick a category to explore our approach or start a brief directly.
-        </p>
-      </div>
+      <div className="categories__bg" aria-hidden="true" />
 
-      <div className="categories__row">
-        {CATS.map((cat, i) => (
-          <button
-            key={cat.name}
-            className={`cat-card${i % 2 === 1 ? ' cat-card--offset' : ''}`}
-            style={{ '--ac': cat.accent }}
-            onMouseEnter={() => setHovered(cat.name)}
-            onMouseLeave={() => setHovered(null)}
-            onClick={() => handleClick(cat)}
-            aria-label={`Open ${cat.name} packaging details`}
-          >
-            <div className="cat-card__imgs">
-              <img src={cat.img1} alt={`${cat.name} packaging`} className="cat-card__img cat-card__img--base" loading="lazy" />
-              <img src={cat.img2} alt="" aria-hidden="true"
-                className={`cat-card__img cat-card__img--hover${hovered === cat.name ? ' is-visible' : ''}`}
-                loading="lazy" />
-            </div>
-            <div className="cat-card__shade" />
-            <div className="cat-card__accent-bar" />
-            <div className="cat-card__body">
-              <span className="cat-card__name">{cat.name}</span>
-              <p className={`cat-card__desc${hovered === cat.name ? ' is-visible' : ''}`}>
-                {cat.desc.split('.')[0]}.
-              </p>
-            </div>
-          </button>
-        ))}
+      <div className="categories__inner">
+        <motion.div
+          className="categories__head"
+          initial={reduceMotion ? false : { opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.9, ease: EASE }}
+        >
+          <div className="categories__head-left">
+            <p className="categories__eyebrow">Our expertise</p>
+            <h2 className="categories__title">
+              What we <em>designs</em>
+            </h2>
+          </div>
+
+          <div className="categories__head-right">
+            <p className="categories__sub">
+              Pick a category to explore our approach or start a brief directly.
+            </p>
+            <span className="categories__count">
+              {String(CATS.length).padStart(2, '0')} Categories
+            </span>
+          </div>
+        </motion.div>
+
+        <div className="categories__grid">
+          {CATS.map((cat, i) => (
+            <CatCard
+              key={cat.name}
+              cat={cat}
+              index={i}
+              wide={i < 2}
+              onOpen={handleClick}
+              reduceMotion={reduceMotion}
+            />
+          ))}
+        </div>
       </div>
     </section>
   )

@@ -1,17 +1,20 @@
 /* =========================================================
-   CREADOR DESIGNS — PREMIUM FOOTER v2
+   CREADOR DESIGNS — PREMIUM GLOSSY FOOTER v3
 ========================================================= */
 
 .footer {
   position: relative;
   width: 100%;
   overflow: hidden;
-  background: #06130c;
+  background:
+    radial-gradient(120% 140% at 50% -20%, #0d2415 0%, #06130c 55%),
+    #06130c;
   color: #f2f5ef;
   padding-top: 48px;
+  isolation: isolate;
 }
 
-/* Subtle grain texture over the whole footer, matching the hero's grain */
+/* Subtle grain texture over the whole footer */
 .footer__noise {
   position: absolute;
   inset: 0;
@@ -20,6 +23,16 @@
   opacity: 0.05;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Soft glass sheen across the very top edge, like light hitting glass */
+.footer__sheen {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 220px;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
 }
 
 .footer__glow {
@@ -33,14 +46,14 @@
   left: -140px;
   width: 520px;
   height: 520px;
-  background: radial-gradient(circle, rgba(169, 201, 90, 0.16) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(169, 201, 90, 0.18) 0%, transparent 70%);
 }
 .footer__glow--b {
   bottom: -260px;
   right: -160px;
   width: 460px;
   height: 460px;
-  background: radial-gradient(circle, rgba(210, 234, 86, 0.1) 0%, transparent 72%);
+  background: radial-gradient(circle, rgba(210, 234, 86, 0.11) 0%, transparent 72%);
 }
 
 .footer__container {
@@ -52,7 +65,7 @@
 
 
 /* =========================================================
-   FLOATING PREMIUM CTA BANNER
+   FLOATING PREMIUM GLOSSY CTA BANNER
 ========================================================= */
 
 .footer__banner {
@@ -62,26 +75,40 @@
   justify-content: space-between;
   gap: 2.5rem;
   flex-wrap: wrap;
+  overflow: hidden;
 
   padding: 2.6rem 3rem;
-  margin-bottom: 3.2rem;
+  margin-bottom: 2.6rem;
 
   border-radius: 26px;
-  background: linear-gradient(135deg, rgba(169, 201, 90, 0.14), rgba(169, 201, 90, 0.03) 60%),
-              rgba(14, 28, 17, 0.9);
-  border: 1px solid rgba(169, 201, 90, 0.22);
-  box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  background: linear-gradient(135deg, rgba(169, 201, 90, 0.16), rgba(169, 201, 90, 0.02) 55%),
+              rgba(15, 30, 18, 0.92);
+  border: 1px solid rgba(169, 201, 90, 0.24);
+  box-shadow:
+    0 40px 90px -30px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(6px);
 }
 
-.footer__banner-text { max-width: 420px; }
+/* Glossy highlight arc across the top of the banner, like glass */
+.footer__banner-shine {
+  position: absolute;
+  top: -60%;
+  left: -10%;
+  width: 120%;
+  height: 100%;
+  background: radial-gradient(60% 100% at 30% 0%, rgba(255, 255, 255, 0.14) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.footer__banner-text { position: relative; max-width: 420px; }
 
 .footer__banner-eyebrow {
   display: inline-block;
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  letter-spacing: 0.1em;
   color: #cfe48b;
   margin-bottom: 0.7rem;
 }
@@ -103,16 +130,18 @@
   color: rgba(240, 245, 239, 0.62);
 }
 
-/* ---- Subscribe / contact form ---- */
+/* ---- Subscribe / contact form — glossy glass pill ---- */
 .footer__subscribe {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  background: rgba(6, 19, 12, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(6, 19, 12, 0.6) 40%);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 100px;
   padding: 0.4rem 0.4rem 0.4rem 1.3rem;
   flex-shrink: 0;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 10px 30px -14px rgba(0, 0, 0, 0.5);
 }
 
 .footer__subscribe input {
@@ -128,26 +157,84 @@
 
 .footer__subscribe input::placeholder { color: rgba(240, 245, 239, 0.4); }
 
-.footer__subscribe button {
+/* Glossy button: bright top highlight fading to a deeper base, plus a shine sweep on hover */
+.footer__cta-btn {
   position: relative;
   overflow: hidden;
   white-space: nowrap;
   border: none;
   border-radius: 100px;
-  padding: 0.72rem 1.5rem;
-  background: linear-gradient(135deg, #5cae5f, #3f8a43);
+  padding: 0.72rem 1.6rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 45%),
+    linear-gradient(135deg, #6ec26f, #3f8a43 70%);
   color: #ffffff;
   font-weight: 700;
   font-size: 0.96rem;
   cursor: pointer;
   transition: transform 0.25s cubic-bezier(.2,.8,.2,1), box-shadow 0.25s ease, filter 0.25s ease;
-  box-shadow: 0 8px 24px rgba(63, 138, 67, 0.4);
+  box-shadow:
+    0 8px 24px rgba(63, 138, 67, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.18);
 }
 
-.footer__subscribe button:hover {
+.footer__cta-btn span { position: relative; z-index: 1; }
+
+.footer__cta-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+}
+
+.footer__cta-btn:hover {
   transform: translateY(-2px);
-  filter: brightness(1.08);
-  box-shadow: 0 12px 30px rgba(63, 138, 67, 0.55);
+  filter: brightness(1.05);
+  box-shadow:
+    0 12px 30px rgba(63, 138, 67, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.18);
+}
+
+.footer__cta-btn:hover::after { left: 120%; }
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.footer__divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 2.6rem;
+}
+
+.footer__divider-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(169, 201, 90, 0.35), transparent);
+}
+
+.footer__divider-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: #cfe48b;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0) 50%),
+    rgba(169, 201, 90, 0.12);
+  border: 1px solid rgba(169, 201, 90, 0.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 6px 18px -8px rgba(169, 201, 90, 0.5);
 }
 
 
@@ -157,8 +244,8 @@
 
 .footer__main {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
-  gap: 40px;
+  grid-template-columns: 1.4fr 0.9fr 0.9fr 0.9fr 1.1fr;
+  gap: 32px;
 
   padding-bottom: 36px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -168,7 +255,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 14px;
+  gap: 16px;
 }
 
 .footer__brand {
@@ -177,36 +264,37 @@
   gap: 13px;
 }
 
-.footer__logo-img {
-  width: 96px;
-  height: 96px;
-  object-fit: contain;
+/* Glossy circular logo plate, like the reference screenshot */
+.footer__logo-badge {
+  position: relative;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(240, 245, 239, 0.75) 55%, rgba(220, 228, 214, 0.7));
+  box-shadow:
+    0 10px 26px -10px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s cubic-bezier(.2,.8,.2,1);
 }
 
-.footer__brand:hover .footer__logo-img {
+.footer__brand:hover .footer__logo-badge {
   transform: rotate(-6deg) scale(1.06);
 }
 
-.footer__brand h2 {
-  margin: 0;
-  font-size: 22px;
-  line-height: 1;
-  font-weight: 650;
-  letter-spacing: -0.04em;
-}
-
-.footer__brand span {
-  display: block;
-  margin-top: 5px;
-  font-size: 7px;
-  font-weight: 600;
-  letter-spacing: 0.3em;
-  color: #a9c95a;
+.footer__logo-img {
+  width: 78%;
+  height: 78%;
+  object-fit: contain;
 }
 
 .footer__intro {
-  max-width: 320px;
+  max-width: 300px;
   margin: 0;
   font-size: 14.5px;
   line-height: 1.7;
@@ -215,7 +303,7 @@
 
 
 /* =========================================================
-   SOCIAL ICONS
+   SOCIAL ICONS — glossy glass circles
 ========================================================= */
 
 .footer__socials {
@@ -231,16 +319,17 @@
   justify-content: center;
   width: 38px;
   height: 38px;
-  border-radius: 11px;
-  color: rgba(240, 245, 239, 0.65);
-  background: rgba(255, 255, 255, 0.045);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: rgba(240, 245, 239, 0.7);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.015) 60%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 4px 14px -8px rgba(0, 0, 0, 0.6);
   transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s cubic-bezier(.2,.8,.2,1);
 }
 
 .footer__social:hover {
-  background: rgba(169, 201, 90, 0.14);
-  border-color: rgba(169, 201, 90, 0.45);
+  background: linear-gradient(180deg, rgba(169, 201, 90, 0.3), rgba(169, 201, 90, 0.08) 60%);
+  border-color: rgba(169, 201, 90, 0.5);
   color: #cfe48b;
   transform: translateY(-3px);
 }
@@ -254,7 +343,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 14px;
+  gap: 13px;
 }
 
 .footer__column h4 {
@@ -264,25 +353,28 @@
   margin: 0 0 6px;
   font-size: 12px;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: #4f9c52;
+  letter-spacing: 0.06em;
+  color: #9fd274;
 }
 
-.footer__col-bar {
-  display: inline-block;
-  width: 14px;
-  height: 2px;
-  border-radius: 2px;
-  background: #4f9c52;
+.footer__col-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  color: #cfe48b;
+  background: linear-gradient(180deg, rgba(169, 201, 90, 0.28), rgba(169, 201, 90, 0.06));
+  border: 1px solid rgba(169, 201, 90, 0.3);
 }
 
 .footer__column a {
   position: relative;
   color: rgba(240, 245, 239, 0.68);
   text-decoration: none;
-  font-size: 15px;
-  transition: color 0.3s ease, transform 0.3s ease, padding-left 0.3s ease;
+  font-size: 14.5px;
+  transition: color 0.3s ease, padding-left 0.3s ease;
 }
 
 .footer__column a::before {
@@ -307,9 +399,26 @@
   transform: translateY(-50%) scaleX(1);
 }
 
-.footer__location {
-  font-size: 15px;
-  color: rgba(240, 245, 239, 0.5);
+.footer__column--contact a {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13.6px;
+  line-height: 1.4;
+}
+
+.footer__contact-icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  margin-top: -1px;
+  border-radius: 7px;
+  color: #cfe48b;
+  background: linear-gradient(180deg, rgba(169, 201, 90, 0.22), rgba(169, 201, 90, 0.04));
+  border: 1px solid rgba(169, 201, 90, 0.26);
 }
 
 
@@ -321,13 +430,39 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 0 26px;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 22px 0 28px;
 }
 
-.footer__bottom > span {
+.footer__copyright {
   font-size: 13px;
   color: rgba(255, 255, 255, 0.4);
+  white-space: nowrap;
 }
+
+/* Glossy trust badges */
+.footer__badges {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.footer__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: rgba(240, 245, 239, 0.72);
+  padding: 7px 14px;
+  border-radius: 100px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.01) 60%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.footer__badge svg { color: #a9d16a; flex-shrink: 0; }
 
 .footer__legal {
   display: flex;
@@ -339,29 +474,49 @@
   color: rgba(255, 255, 255, 0.4);
   text-decoration: none;
   transition: color 0.3s ease;
+  white-space: nowrap;
 }
 
 .footer__legal a:hover { color: #b8d46b; }
 
+/* Glossy floating back-to-top */
 .footer__totop {
+  position: absolute;
+  right: 6%;
+  bottom: 22px;
+  z-index: 2;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(255, 255, 255, 0.04);
-  color: rgba(240, 245, 239, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.02) 60%);
+  color: rgba(240, 245, 239, 0.7);
   cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 10px 24px -12px rgba(0, 0, 0, 0.6);
   transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s cubic-bezier(.2,.8,.2,1);
 }
 
 .footer__totop:hover {
-  background: rgba(169, 201, 90, 0.14);
-  border-color: rgba(169, 201, 90, 0.4);
+  background: linear-gradient(180deg, rgba(169, 201, 90, 0.32), rgba(169, 201, 90, 0.06) 60%);
+  border-color: rgba(169, 201, 90, 0.45);
   color: #cfe48b;
   transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   DESKTOP / LAPTOP
+========================================================= */
+
+@media (max-width: 1100px) {
+  .footer__main {
+    grid-template-columns: 1.4fr 1fr 1fr;
+    row-gap: 32px;
+  }
+  .footer__column--contact { grid-column: 1 / -1; }
 }
 
 
@@ -377,6 +532,7 @@
     grid-column: 1 / -1;
     margin-bottom: 6px;
   }
+  .footer__column--contact { grid-column: auto; }
 }
 
 @media (max-width: 760px) {
@@ -388,6 +544,8 @@
   .footer__banner-text { max-width: 100%; }
   .footer__subscribe { width: 100%; }
   .footer__subscribe input { width: 100%; max-width: none; }
+  .footer__totop { position: static; margin-left: auto; }
+  .footer__bottom { padding-bottom: 26px; }
 }
 
 
@@ -404,8 +562,10 @@
   .footer__banner {
     border-radius: 20px;
     padding: 1.6rem;
-    margin-bottom: 2.2rem;
+    margin-bottom: 2rem;
   }
+
+  .footer__divider { margin-bottom: 2rem; }
 
   .footer__main {
     grid-template-columns: 1fr 1fr;
@@ -416,15 +576,15 @@
 
   .footer__bottom {
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 14px;
   }
+
+  .footer__badges { order: 2; width: 100%; }
 
   .footer__legal {
     order: 3;
     width: 100%;
   }
-
-  .footer__totop { margin-left: auto; }
 }
 
 
@@ -446,5 +606,5 @@
     gap: 0.8rem;
   }
   .footer__subscribe input { width: 100%; }
-  .footer__subscribe button { width: 100%; }
+  .footer__cta-btn { width: 100%; }
 }

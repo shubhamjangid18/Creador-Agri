@@ -1,21 +1,52 @@
 /* ============================================================
-   TESTIMONIALS — Premium compact, no images, no tags
+   TESTIMONIALS — Clean premium, photo background, flat cards
    ============================================================ */
 
 .ts-section {
+  /* Photo kitni dark ho: 0 = bilkul original, 0.6 = kaafi dark */
+  --ts-dim: 0.38;
+
+  /* Photo ka focal point "x y" */
+  --ts-pos: 60% 45%;
+
   position: relative;
-  padding: 72px 6% 56px;
-  background: #f2f5ee;
+  padding: 110px 6% 90px;
+  background: #061a09;
   overflow: hidden;
 }
 
-.ts-bg-glow {
+/* ── Background photo ── */
+.ts-bg {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse 55% 45% at 80% 10%, rgba(92,147,104,0.11) 0%, transparent 65%),
-    radial-gradient(ellipse 40% 35% at 10% 90%, rgba(92,147,104,0.07) 0%, transparent 65%);
-  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  background: #061a09;
+}
+
+.ts-bg__img {
+  position: absolute;
+  left: 0;
+  top: -10%;
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  object-position: var(--ts-pos);
+  display: block;
+}
+
+/* Simple tint: beech mein halka, upar-neeche thoda gehra taaki
+   dusre sections ke saath blend ho. Koi glow ya effect nahi. */
+.ts-bg__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(4, 16, 7, 0.78) 0%,
+    rgba(4, 16, 7, var(--ts-dim)) 24%,
+    rgba(4, 16, 7, var(--ts-dim)) 72%,
+    rgba(4, 16, 7, 0.85) 100%
+  );
 }
 
 .ts-wrap {
@@ -28,39 +59,43 @@
 /* ── Header ── */
 .ts-head {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 52px;
 }
 
 .ts-eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 11px;
-  font-size: 9.5px;
+  gap: 12px;
+  margin-bottom: 16px;
+
+  font-size: 10.5px;
   font-weight: 700;
-  letter-spacing: 3px;
-  color: #5c9368;
+  letter-spacing: 3.2px;
   text-transform: uppercase;
-  margin-bottom: 14px;
+  color: #b6e6c1;
 }
+
 .ts-eyebrow__line {
   display: block;
-  width: 26px;
+  width: 30px;
   height: 1px;
-  background: #79a878;
-  opacity: 0.65;
+  background: #b6e6c1;
+  opacity: 0.7;
 }
 
 .ts-title {
   margin: 0;
-  font-size: clamp(30px, 3.6vw, 50px);
+
+  font-size: clamp(34px, 4.4vw, 60px);
   font-weight: 500;
   letter-spacing: -2px;
-  line-height: 1.02;
-  color: #10251b;
+  line-height: 1.04;
+  color: #ffffff;
 }
+
 .ts-title em {
   font-style: normal;
-  color: #5c9368;
+  color: #8fd19e;
 }
 
 /* ── Stage ── */
@@ -75,87 +110,81 @@
   gap: 1.15rem;
 }
 
-/* ── Card ── */
+/* ── Card (flat, solid) ── */
 .ts-card {
-  position: relative;
-  background: #10251b;
-  border-radius: 18px;
-  padding: 28px 26px 24px;
-  border: 1px solid rgba(255,255,255,0.04);
-  box-shadow:
-    0 16px 42px rgba(16,37,27,0.13),
-    0 2px 8px rgba(0,0,0,0.07);
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
-  overflow: hidden;
-  transition: transform 0.32s cubic-bezier(.2,.8,.2,1), box-shadow 0.32s ease;
+  gap: 0.8rem;
+
+  padding: 30px 26px 26px;
+  border-radius: 16px;
+
+  background: #0c2314;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
+
 .ts-card:hover {
-  transform: translateY(-5px);
-  box-shadow:
-    0 26px 56px rgba(16,37,27,0.2),
-    0 4px 12px rgba(0,0,0,0.09);
-}
-.ts-card::before {
-  content: '';
-  position: absolute;
-  width: 220px; height: 220px;
-  right: -80px; top: -110px;
-  border-radius: 50%;
-  background: rgba(121,200,137,0.065);
-  filter: blur(48px);
-  pointer-events: none;
+  transform: translateY(-4px);
+  border-color: rgba(143, 209, 158, 0.35);
 }
 
 /* ── Stars ── */
 .ts-card__stars {
   display: flex;
   gap: 3px;
-  color: #79c889;
+  color: #8fd19e;
 }
 
 /* ── Quote mark ── */
 .ts-card__quote-mark {
+  height: 34px;
+
   font-family: Georgia, serif;
   font-size: 60px;
   line-height: 0.65;
   color: #5c9368;
-  opacity: 0.8;
-  height: 34px;
 }
 
 /* ── Text ── */
 .ts-card__text {
   margin: 0;
-  font-size: 0.875rem;
-  line-height: 1.66;
-  color: rgba(255,253,247,0.78);
   flex: 1;
+
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: rgba(255, 253, 247, 0.85);
 }
 
 /* ── Client ── */
 .ts-card__client {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding-top: 16px;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  gap: 11px;
+
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .ts-card__avatar {
-  width: 36px; height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  background: rgba(92,147,104,0.18);
-  border: 1.5px solid rgba(121,200,137,0.3);
+  flex-shrink: 0;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   font-size: 11px;
   font-weight: 700;
-  color: #79c889;
   letter-spacing: 0.5px;
-  flex-shrink: 0;
+  color: #8fd19e;
+
+  background: rgba(92, 147, 104, 0.18);
+  border: 1px solid rgba(143, 209, 158, 0.35);
 }
 
 .ts-card__info {
@@ -164,53 +193,55 @@
   gap: 2px;
   min-width: 0;
 }
+
 .ts-card__info strong {
-  font-size: 0.82rem;
+  font-size: 0.84rem;
   font-weight: 700;
   color: #fffdf7;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .ts-card__info span {
-  font-size: 0.7rem;
-  color: rgba(255,255,255,0.38);
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.55);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* ── Bottom bar ── */
-.ts-card__bar {
-  position: absolute;
-  left: 0; bottom: 0;
-  width: 32%; height: 2px;
-  background: linear-gradient(90deg, #5c9368, transparent);
-  opacity: 0.65;
-}
-
-/* ── Arrows ── */
+/* ── Arrows (flat) ── */
 .ts-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   z-index: 5;
-  width: 40px; height: 40px;
+
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fff;
-  border: 1px solid rgba(16,37,27,0.1);
-  color: #10251b;
+
+  background: #ffffff;
+  border: none;
+  color: #0c2314;
   cursor: pointer;
-  box-shadow: 0 6px 20px rgba(16,37,27,0.13);
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
   transition: background 0.22s, color 0.22s, transform 0.22s;
 }
-.ts-arrow:hover { background: #10251b; color: #79c889; }
-.ts-arrow--prev { left: -20px; }
+
+.ts-arrow:hover {
+  background: #8fd19e;
+}
+
+.ts-arrow--prev { left: -21px; }
 .ts-arrow--prev:hover { transform: translateY(-50%) translateX(-2px); }
-.ts-arrow--next { right: -20px; }
+.ts-arrow--next { right: -21px; }
 .ts-arrow--next:hover { transform: translateY(-50%) translateX(2px); }
 
 /* ── Dots ── */
@@ -218,30 +249,38 @@
   display: flex;
   justify-content: center;
   gap: 9px;
-  margin-top: 26px;
+  margin-top: 32px;
 }
 
 .ts-dot {
   position: relative;
-  width: 32px; height: 4px;
+  width: 36px;
+  height: 3px;
+  padding: 0;
+  border: none;
   border-radius: 2px;
-  border: none; padding: 0;
-  background: rgba(16,37,27,0.14);
+
+  background: rgba(255, 255, 255, 0.28);
   cursor: pointer;
   overflow: hidden;
   transition: background 0.22s;
 }
-.ts-dot:hover { background: rgba(16,37,27,0.24); }
-.ts-dot--active { background: rgba(16,37,27,0.14); }
+
+.ts-dot:hover { background: rgba(255, 255, 255, 0.45); }
+
+.ts-dot--active { background: rgba(255, 255, 255, 0.28); }
 
 .ts-dot__fill {
   position: absolute;
   inset: 0;
+
   transform-origin: left;
   transform: scaleX(0);
-  background: #5c9368;
+  background: #8fd19e;
+
   animation: ts-fill linear forwards;
 }
+
 @keyframes ts-fill {
   from { transform: scaleX(0); }
   to   { transform: scaleX(1); }
@@ -252,35 +291,52 @@
    ============================================================ */
 
 @media (max-width: 860px) {
+  .ts-section { padding: 90px 6% 76px; }
+
   .ts-grid { grid-template-columns: 1fr 1fr; }
   .ts-grid > .ts-card:nth-child(3) { display: none; }
+
   .ts-arrow--prev { left: 4px; }
   .ts-arrow--next { right: 4px; }
 }
 
 @media (max-width: 560px) {
-  .ts-section { padding: 56px 5% 44px; }
-  .ts-head { margin-bottom: 28px; }
+  .ts-section {
+    --ts-pos: 65% 45%;
+    padding: 70px 5% 60px;
+  }
+
+  .ts-head { margin-bottom: 32px; }
+  .ts-eyebrow { font-size: 9.5px; letter-spacing: 2.6px; }
+  .ts-title { letter-spacing: -1.4px; }
+
   .ts-grid { grid-template-columns: 1fr; }
   .ts-grid > .ts-card:nth-child(2),
   .ts-grid > .ts-card:nth-child(3) { display: none; }
 
-  .ts-card { padding: 24px 20px 20px; border-radius: 14px; }
-  .ts-card__text { font-size: 0.85rem; }
+  .ts-card { padding: 26px 20px 22px; border-radius: 14px; }
+  .ts-card__text { font-size: 0.88rem; }
 
   .ts-arrow {
-    width: 36px; height: 36px;
-    top: auto; bottom: -46px;
+    width: 38px;
+    height: 38px;
+    top: auto;
+    bottom: -50px;
     transform: none;
   }
-  .ts-arrow--prev { left: 36%; }
-  .ts-arrow--next { right: 36%; }
+  .ts-arrow--prev { left: 34%; }
+  .ts-arrow--next { right: 34%; }
   .ts-arrow--prev:hover,
   .ts-arrow--next:hover { transform: none; }
 
-  .ts-dots { margin-top: 64px; }
+  .ts-dots { margin-top: 70px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ts-card, .ts-arrow, .ts-dot__fill { transition: none; animation: none; }
+  .ts-card,
+  .ts-arrow,
+  .ts-dot__fill {
+    transition: none;
+    animation: none;
+  }
 }
