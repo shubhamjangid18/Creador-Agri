@@ -8,9 +8,6 @@ import {
 } from "framer-motion";
 import "./Testimonials.css";
 
-/* Background photo.
-   Farmer wali apni photo lagani ho to:
-   public/farmer-bg.jpg mein rakho aur yahan "/farmer-bg.jpg" likh do. */
 const BG_IMAGE =
   "https://images.pexels.com/photos/29282018/pexels-photo-29282018.jpeg?auto=compress&cs=tinysrgb&w=1920";
 
@@ -78,7 +75,7 @@ export default function Testimonials() {
   const reduceMotion = useReducedMotion();
   const sectionRef = useRef(null);
 
-  // Halka parallax
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],

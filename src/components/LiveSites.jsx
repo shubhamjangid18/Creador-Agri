@@ -20,30 +20,17 @@ const SITES = [
 
 function LiveCard({ site }) {
   return (
-    <a
-      className="live-card"
-      href={site.url}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+    <a className="live-card" href={site.url} target="_blank" rel="noopener noreferrer">
       <div className="live-card__browser">
         <span className="live-card__dot live-card__dot--red" />
         <span className="live-card__dot live-card__dot--yellow" />
         <span className="live-card__dot live-card__dot--green" />
         <span className="live-card__url">{site.url.replace(/^https?:\/\//, '')}</span>
       </div>
-
       <div className="live-card__viewport">
-        <iframe
-          src={site.url}
-          title={site.name}
-          className="live-card__iframe"
-          loading="lazy"
-          tabIndex={-1}
-        />
+        <iframe src={site.url} title={site.name} className="live-card__iframe" loading="lazy" tabIndex={-1} />
         <div className="live-card__shield" />
       </div>
-
       <div className="live-card__label">
         <div className="live-card__label-top">
           <span className="live-card__name">{site.name}</span>
@@ -66,9 +53,7 @@ export default function LiveSites() {
       <div className="live-sites__head">
         <p className="live-sites__eyebrow">Live on the web</p>
         <h2 className="live-sites__title">Websites We've Built</h2>
-
       </div>
-
       <div className="live-sites__grid">
         {SITES.map((site) => (
           <LiveCard key={site.name} site={site} />

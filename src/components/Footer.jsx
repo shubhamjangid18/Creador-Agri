@@ -1,10 +1,258 @@
 import { useState } from "react";
 import "./Footer.css";
 
+/* =========================================
+   PRODUCTS (same data/logic as Marquee.jsx,
+   duplicated here so Footer stays standalone)
+========================================= */
+
+const PRODUCT_FOLDER = encodeURIComponent("Creador Fertilizer Packagings");
+
+const PRODUCTS = Array.from(
+  { length: 28 },
+  (_, i) => `/products/${PRODUCT_FOLDER}/${String(i + 1).padStart(2, "0")}.png`
+);
+
+/* =========================================
+   OPEN ALL PRODUCTS (new tab gallery)
+========================================= */
+
+const openAllProducts = () => {
+  const newTab = window.open("", "_blank");
+  if (!newTab) return;
+
+  newTab.document.write(`
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { background: #050b08; }
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 50% -10%, rgba(38, 92, 62, 0.35), transparent 45%),
+        radial-gradient(circle at 100% 100%, rgba(18, 62, 40, 0.2), transparent 40%),
+        #050b08;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      overflow-x: hidden;
+    }
+    .gallery { width: 100%; min-height: 100vh; padding: 42px; }
+    .gallery-grid {
+      width: 100%;
+      max-width: 1700px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+    }
+    .product-card {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      border-radius: 18px;
+      background: #0c1711;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      cursor: pointer;
+      transition:
+        transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+        border-color 0.4s ease,
+        box-shadow 0.5s ease;
+    }
+    .product-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), transparent 35%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-6px) scale(1.01);
+      border-color: rgba(255, 255, 255, 0.18);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.5);
+    }
+    .product-card:hover::after { opacity: 1; }
+    .product-card img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      user-select: none;
+      transition: transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    .product-card:hover img { transform: scale(1.055); }
+    .viewer {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      background: rgba(2, 8, 5, 0.97);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+    .viewer.active { display: flex; }
+    .viewer-image {
+      max-width: 88vw;
+      max-height: 88vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 14px;
+      user-select: none;
+      -webkit-user-drag: none;
+      box-shadow: 0 35px 120px rgba(0, 0, 0, 0.75);
+      animation: viewerImageIn 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    @keyframes viewerImageIn {
+      from { opacity: 0; transform: scale(0.96); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    .viewer-button {
+      position: absolute;
+      width: 58px;
+      height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.07);
+      color: white;
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+    .viewer-button svg {
+      width: 23px;
+      height: 23px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .viewer-button:hover {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.28);
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+    }
+    .viewer-button-left  { left: 30px;  top: 50%; transform: translateY(-50%); }
+    .viewer-button-left:hover  { transform: translateY(-50%) scale(1.08); }
+    .viewer-button-right { right: 30px; top: 50%; transform: translateY(-50%); }
+    .viewer-button-right:hover { transform: translateY(-50%) scale(1.08); }
+    .viewer-button-close { top: 25px; right: 30px; }
+    .viewer-button-close:hover { transform: rotate(90deg) scale(1.08); }
+    @media (max-width: 1200px) {
+      .gallery { padding: 30px; }
+      .gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+    @media (max-width: 750px) {
+      .gallery { padding: 16px; }
+      .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+      .product-card { border-radius: 13px; }
+      .viewer { padding: 18px; }
+      .viewer-image { max-width: 90vw; max-height: 82vh; border-radius: 10px; }
+      .viewer-button { width: 46px; height: 46px; }
+      .viewer-button svg { width: 20px; height: 20px; }
+      .viewer-button-left  { left: 9px; }
+      .viewer-button-right { right: 9px; }
+      .viewer-button-close { top: 13px; right: 13px; }
+    }
+    @media (max-width: 430px) {
+      .gallery-grid { gap: 9px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="gallery">
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </main>
+  <div class="viewer" id="viewer">
+    <button class="viewer-button viewer-button-left" id="previousButton" aria-label="Previous">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5L8 12L15 19"></path></svg>
+    </button>
+    <img class="viewer-image" id="viewerImage" src="" alt="" />
+    <button class="viewer-button viewer-button-right" id="nextButton" aria-label="Next">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5L16 12L9 19"></path></svg>
+    </button>
+    <button class="viewer-button viewer-button-close" id="closeButton" aria-label="Close">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6 6L18 18"></path>
+        <path d="M18 6L6 18"></path>
+      </svg>
+    </button>
+  </div>
+  <script>
+    const products = ${JSON.stringify(PRODUCTS)};
+    const galleryGrid    = document.getElementById("galleryGrid");
+    const viewer         = document.getElementById("viewer");
+    const viewerImage    = document.getElementById("viewerImage");
+    const previousButton = document.getElementById("previousButton");
+    const nextButton     = document.getElementById("nextButton");
+    const closeButton    = document.getElementById("closeButton");
+    let currentIndex = 0;
+
+    products.forEach((image, index) => {
+      const card = document.createElement("div");
+      card.className = "product-card";
+      const img = document.createElement("img");
+      img.src = image;
+      img.alt = "";
+      img.loading = "lazy";
+      img.draggable = false;
+      card.appendChild(img);
+      card.addEventListener("click", () => openViewer(index));
+      galleryGrid.appendChild(card);
+    });
+
+    function openViewer(index) {
+      currentIndex = index;
+      updateViewer();
+      viewer.classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+    function updateViewer() { viewerImage.src = products[currentIndex]; }
+    function nextImage() { currentIndex = (currentIndex + 1) % products.length; updateViewer(); }
+    function previousImage() { currentIndex = (currentIndex - 1 + products.length) % products.length; updateViewer(); }
+    function closeViewer() { viewer.classList.remove("active"); document.body.style.overflow = ""; }
+
+    nextButton.addEventListener("click", nextImage);
+    previousButton.addEventListener("click", previousImage);
+    closeButton.addEventListener("click", closeViewer);
+    viewer.addEventListener("click", (event) => { if (event.target === viewer) closeViewer(); });
+    document.addEventListener("keydown", (event) => {
+      if (!viewer.classList.contains("active")) return;
+      if (event.key === "ArrowRight") nextImage();
+      if (event.key === "ArrowLeft")  previousImage();
+      if (event.key === "Escape")     closeViewer();
+    });
+  <\/script>
+</body>
+</html>
+  `);
+
+  newTab.document.close();
+};
+
 const SOCIALS = [
   {
     label: "Instagram",
-    href: "#",
+    href: "https://instagram.com/creadordesigns",
     icon: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.8" />
@@ -15,7 +263,7 @@ const SOCIALS = [
   },
   {
     label: "LinkedIn",
-    href: "#",
+    href: "https://linkedin.com/company/creadordesigns",
     icon: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" strokeWidth="1.8" />
@@ -25,7 +273,7 @@ const SOCIALS = [
   },
   {
     label: "Facebook",
-    href: "#",
+    href: "https://facebook.com/creadordesigns",
     icon: (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path d="M14 8.5h2V5.3h-2.3c-2.2 0-3.5 1.4-3.5 3.7v1.7H8v3.2h2.2V21h3.1v-7.1h2.3l.4-3.2h-2.7V9.4c0-.6.3-.9 1-.9z" fill="currentColor" />
@@ -34,6 +282,8 @@ const SOCIALS = [
   },
 ];
 
+// "action: products" wale links click hote hi poori products gallery
+// naye tab me kholte hain, scroll nahi karte.
 const COLUMNS = [
   {
     title: "Explore",
@@ -46,7 +296,7 @@ const COLUMNS = [
       { label: "Home", href: "#home" },
       { label: "Services", href: "#services" },
       { label: "Categories", href: "#categories" },
-      { label: "Our Work", href: "#work" },
+      { label: "Products", action: "products" },
     ],
   },
   {
@@ -58,10 +308,10 @@ const COLUMNS = [
       </svg>
     ),
     links: [
-      { label: "Fertilizers", href: "#fertilizers" },
-      { label: "Pesticides", href: "#pesticides" },
-      { label: "Seeds", href: "#seeds" },
-      { label: "Agri Solutions", href: "#agri-solutions" },
+      { label: "Fertilizers", action: "products" },
+      { label: "Pesticides", action: "products" },
+      { label: "Seeds", action: "products" },
+      { label: "Agri Solutions", action: "products" },
     ],
   },
   {
@@ -74,8 +324,6 @@ const COLUMNS = [
     links: [
       { label: "About Us", href: "#about" },
       { label: "Why Us", href: "#why-us" },
-      { label: "Blog", href: "#blog" },
-      { label: "Careers", href: "#careers" },
     ],
   },
 ];
@@ -130,6 +378,28 @@ export default function Footer() {
     setEmail("");
     setTimeout(() => setSubmitted(false), 3500);
   }
+
+  // Handle smooth scroll for footer links, or trigger the products gallery
+  const handleNavClick = (e, link) => {
+    if (link.action === "products") {
+      e.preventDefault();
+      openAllProducts();
+      return;
+    }
+
+    if (link.href && link.href.startsWith("#")) {
+      e.preventDefault();
+      const targetId = link.href.substring(1);
+      const targetElement = document.getElementById(targetId);
+
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        // Fallback: navigate using window.location if element not found
+        window.location.hash = link.href;
+      }
+    }
+  };
 
   return (
     <footer className="footer">
@@ -218,7 +488,13 @@ export default function Footer() {
             <div className="footer__column" key={col.title}>
               <h4><span className="footer__col-icon">{col.icon}</span>{col.title}</h4>
               {col.links.map((l) => (
-                <a href={l.href} key={l.label}>{l.label}</a>
+                <a
+                  href={l.href || "#"}
+                  key={l.label}
+                  onClick={(e) => handleNavClick(e, l)}
+                >
+                  {l.label}
+                </a>
               ))}
             </div>
           ))}
